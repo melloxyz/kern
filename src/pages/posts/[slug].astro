@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('pt-BR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+}
+---
+
+<Base title={post.data.title} description={post.data.excerpt}>
+  <div class="container--post">
+    <article class="post">
+
+      <a href="/" class="post__back">← voltar ao feed</a>
+
+      <div class="post__meta">
+        <span class="post__category">{post.data.category}</span>
+        <span class="post__sep">·</span>
+        <span class="post__date">{formatDate(post.data.date)}</span>
+        <span class="post__sep">·</span>
+        <span class="post__readtime">{post.data.readTime ?? '5 min'} de leitura</span>
+      </div>
+
+      <h1 class="post__title">{post.data.title}</h1>
+
+      <div class="post__body">
+        <Content />
+      </div>
+
+      <div class="post__tags">
+        {post.data.tags.map(tag => (
+          <a href={`/tag/${tag}`} class="post__tag">#{tag}</a>
+        ))}
+      </div>
+
+    </article>
+  </div>
+</Base>
