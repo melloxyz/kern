@@ -1,0 +1,30 @@
+---
+interface Props {
+  archive: Array<{
+    label: string;
+    href: string;
+    year: string;
+    month: string;
+    count: number;
+    key: string;
+  }>;
+  activeArchiveKey?: string;
+}
+
+const { archive, activeArchiveKey } = Astro.props;
+---
+<aside class="page-layout__archive">
+  <nav class="archive" aria-label="Arquivo por mês">
+    <p class="archive__title">TIMELINE</p>
+    <ul class="archive__list">
+      {archive.map(entry => (
+        <li class={`archive__item ${activeArchiveKey === entry.key ? 'archive__item--active' : ''}`}>
+          <a href={entry.href}>
+            <span>{entry.label}</span>
+            <span class="archive__count">{entry.count}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

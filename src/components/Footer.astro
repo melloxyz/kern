@@ -1,0 +1,31 @@
+---
+import { CATEGORIES } from '../utils/posts';
+---
+<footer class="site-footer-wrap">
+  <div class="site-footer">
+    <div class="site-footer__top">
+      <div class="site-footer__identity">
+        <a href="/" class="site-footer__brand">KERN<span>.IA</span></a>
+        <p class="site-footer__desc">Inteligência artificial sem hype vazio. Foco em produto, mercado, segurança e trabalho.</p>
+      </div>
+      
+      <div class="site-footer__navs">
+        <nav class="site-footer__col" aria-label="Projeto">
+          <span class="site-footer__col-title">Projeto</span>
+          <a href="/sobre">Sobre o KERN.IA</a>
+          <a href="/rss.xml">Feed RSS</a>
+          <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">GitHub / Open-Source</a>
+        </nav>
+        <nav class="site-footer__col" aria-label="Categorias em Destaque">
+          <span class="site-footer__col-title">Tópicos</span>
+          {CATEGORIES.slice(0, 4).map(c => <a href={`/${c.slug}`}>{c.label}</a>)}
+        </nav>
+      </div>
+    </div>
+    
+    <div class="site-footer__bottom">
+      <span class="site-footer__copy">© {new Date().getFullYear()} KERN.IA. Construído com Astro.</span>
+      <span class="site-footer__tagline">sem ads · sem paywalls</span>
+    </div>
+  </div>
+</footer>

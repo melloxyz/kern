@@ -20,7 +20,12 @@ function formatDate(date: Date) {
 }
 ---
 
-<Base title={post.data.title} description={post.data.excerpt}>
+<Base 
+  title={post.data.title} 
+  description={post.data.excerpt} 
+  image={post.data.image} 
+  ogType="article"
+>
   <div class="container--post">
     <article class="post">
 
