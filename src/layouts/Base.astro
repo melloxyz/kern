@@ -144,7 +144,8 @@ const archive = [...archiveMap.values()].filter(entry => (
         <svg class="site-header__search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="search" id="search-input" placeholder="Buscar posts... (Ctrl+K)" autocomplete="off" aria-label="Buscar posts (Ctrl+K)" />
+        <input type="search" id="search-input" placeholder="Buscar posts..." autocomplete="off" aria-label="Buscar posts (Ctrl+K)" spellcheck="false" />
+        <kbd class="site-header__search-shortcut">Ctrl K</kbd>
         <div class="search-results" id="search-results" role="listbox" aria-label="Resultados da busca" hidden></div>
       </div>
 
@@ -236,6 +237,12 @@ const archive = [...archiveMap.values()].filter(entry => (
     </div>
   </footer>
 
+  <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
   <script>
     // Dark mode
     const html = document.documentElement;
@@ -250,8 +257,7 @@ const archive = [...archiveMap.values()].filter(entry => (
     }
 
     const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    let isDark = stored ? stored === 'dark' : prefersDark;
+    let isDark = stored === 'dark';
     applyTheme(isDark);
 
     btn?.addEventListener('click', () => {
@@ -328,6 +334,19 @@ const archive = [...archiveMap.values()].filter(entry => (
         searchResults.hidden = true;
         searchInput.blur();
       }
+    });
+
+    // Back to top
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn?.classList.add('show');
+      } else {
+        backToTopBtn?.classList.remove('show');
+      }
+    });
+    backToTopBtn?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 
