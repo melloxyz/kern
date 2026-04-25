@@ -36,6 +36,10 @@ function formatDate(date: Date) {
 
       <h1 class="post__title">{post.data.title}</h1>
 
+      {post.data.image && (
+        <img src={post.data.image} alt={post.data.title} class="post__hero" loading="lazy" />
+      )}
+
       <div class="post__body">
         <Content />
       </div>

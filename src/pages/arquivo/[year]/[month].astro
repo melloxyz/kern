@@ -1,18 +1,50 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from '../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 
-const featured = allPosts.filter(p => p.data.featured);
-const rest     = allPosts.filter(p => !p.data.featured);
+  const months = new Map();
+  for (const post of allPosts) {
+    const y = post.data.date.getFullYear();
+    const m = post.data.date.getMonth() + 1;
+    const key = `${y}-${String(m).padStart(2,'0')}`;
+    if (!months.has(key)) months.set(key, { year: String(y), month: String(m).padStart(2,'0') });
+  }
+
+  return [...months.values()].map(({ year, month }) => ({
+    params: { year, month },
+    props: {
+      year: Number(year),
+      month: Number(month),
+      posts: allPosts
+        .filter(p => {
+          return p.data.date.getFullYear() === Number(year) &&
+                 p.data.date.getMonth() + 1 === Number(month);
+        })
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    },
+  }));
+}
+
+const { year, month, posts } = Astro.props;
 
 const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
                    'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
+const label = `${MONTHS_PT[month - 1]} ${year}`;
+
+function formatDate(date) {
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+// Monta sidebar com todos os meses disponíveis
+const allPostsForSidebar = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
 const archiveMap = new Map();
-for (const post of allPosts) {
+for (const post of allPostsForSidebar) {
   const y = post.data.date.getFullYear();
   const m = post.data.date.getMonth();
   const key = `${y}-${String(m).padStart(2,'0')}`;
@@ -27,45 +59,21 @@ for (const post of allPosts) {
   archiveMap.get(key).count++;
 }
 const archive = [...archiveMap.values()];
-
-function formatDate(date) {
-  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
-}
+const activeKey = `${year}-${String(month).padStart(2,'0')}`;
 ---
 
-<Base>
+<Base title={label}>
   <div class="container">
     <div class="feed-layout">
 
       <div class="feed-layout__main">
-
-        {featured.length > 0 && (
-          <div class={`feed__featured ${featured.length === 1 ? 'feed__featured-single' : ''}`}>
-            {featured.map(post => (
-              <a href={`/posts/${post.slug}`} class="card">
-                {post.data.image && (
-                  <img src={post.data.image} alt={post.data.title} class="card__image" loading="lazy" />
-                )}
-                <div class="card__meta">
-                  <span class="card__category">{post.data.category}</span>
-                  <span class="card__date">{formatDate(post.data.date)}</span>
-                </div>
-                <h2 class="card__title">{post.data.title}</h2>
-                <p class="card__excerpt">{post.data.excerpt}</p>
-                <span class="card__read">ler → ({post.data.readTime ?? '5 min'})</span>
-              </a>
-            ))}
-          </div>
-        )}
-
-        {featured.length > 0 && rest.length > 0 && (
-          <div class="divider">
-            <span class="divider__label">Mais recentes</span>
-          </div>
-        )}
+        <div class="tag-header">
+          <a href="/" class="post__back">← feed principal</a>
+          <h1>{label} <small style="font-weight:400;font-size:0.6em;color:#888;">({posts.length} post{posts.length !== 1 ? 's' : ''})</small></h1>
+        </div>
 
         <div>
-          {rest.map(post => (
+          {posts.map(post => (
             <a
               href={`/posts/${post.slug}`}
               class={`post-row ${post.data.image ? 'post-row--has-image' : ''}`}
@@ -85,7 +93,6 @@ function formatDate(date) {
             </a>
           ))}
         </div>
-
       </div>
 
       <aside class="feed-layout__sidebar">
@@ -93,7 +100,7 @@ function formatDate(date) {
           <p class="archive__title">Nesta página</p>
           <ul class="archive__list">
             {archive.map(entry => (
-              <li class="archive__item">
+              <li class={`archive__item ${activeKey === `${entry.year}-${String(entry.month).padStart(2,'0')}` ? 'archive__item--active' : ''}`}>
                 <a href={entry.href}>
                   {entry.label}
                   <span class="archive__count">{entry.count}</span>
