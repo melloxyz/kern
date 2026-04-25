@@ -5,8 +5,9 @@ import { getCollection } from 'astro:content';
 const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const featured = allPosts.filter(p => p.data.featured);
-const rest     = allPosts.filter(p => !p.data.featured);
+const featuredPosts = allPosts.filter(p => p.data.featured);
+const featured = featuredPosts.slice(0, 2);
+const rest = allPosts.filter(p => !featured.includes(p));
 
 function formatDate(date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
