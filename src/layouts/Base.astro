@@ -48,7 +48,7 @@ if (archiveMatch) {
   }
 }
 
-const catCounts = {};
+const catCounts: Record<string, number> = {};
 for (const cat of CATEGORIES) catCounts[cat.category] = 0;
 let totalPostsInContext = 0;
 
@@ -84,8 +84,7 @@ const catLinks = [
   }))
 ];
 
-const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
 const archiveMap = new Map();
 
@@ -271,7 +270,7 @@ const archive = [...archiveMap.values()].filter(entry => (
     const moon = document.getElementById('icon-moon');
     const sun  = document.getElementById('icon-sun');
 
-    function applyTheme(dark) {
+    function applyTheme(dark: boolean) {
       html.setAttribute('data-theme', dark ? 'dark' : 'light');
       if (moon) moon.style.display = dark ? 'none' : 'block';
       if (sun)  sun.style.display  = dark ? 'block' : 'none';
@@ -289,9 +288,9 @@ const archive = [...archiveMap.values()].filter(entry => (
 
     // Search
     const searchWrap = document.getElementById('search-wrap');
-    const searchInput   = document.getElementById('search-input');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
     const searchResults = document.getElementById('search-results');
-    let postIndex = [];
+    let postIndex: any[] = [];
 
     async function loadIndex() {
       if (postIndex.length) return;
@@ -301,11 +300,11 @@ const archive = [...archiveMap.values()].filter(entry => (
       } catch {}
     }
 
-    function normalize(str) {
+    function normalize(str: string) {
       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     }
 
-    function renderResults(query) {
+    function renderResults(query: string) {
       if (!searchResults) return;
       if (!query.trim()) { searchResults.hidden = true; return; }
       const q = normalize(query);
@@ -335,9 +334,14 @@ const archive = [...archiveMap.values()].filter(entry => (
     }
 
     searchInput?.addEventListener('focus', loadIndex);
-    searchInput?.addEventListener('input', e => renderResults(e.target.value));
+    searchInput?.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement | null;
+      if (target) {
+        renderResults(target.value);
+      }
+    });
     document.addEventListener('click', e => {
-      if (!searchWrap?.contains(e.target)) {
+      if (!searchWrap?.contains(e.target as Node)) {
         if (searchResults) searchResults.hidden = true;
       }
     });

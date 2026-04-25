@@ -23,11 +23,10 @@ export async function getStaticPaths() {
 }
 
 const { year, month, posts } = Astro.props;
-const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const label = `${MONTHS_PT[month - 1]} ${year}`;
 
-function formatDate(date) {
+function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 ---
