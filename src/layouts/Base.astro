@@ -219,12 +219,16 @@ const archive = [...archiveMap.values()].filter(entry => (
       } catch {}
     }
 
+    function normalize(str) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
     function renderResults(query) {
       if (!searchResults) return;
       if (!query.trim()) { searchResults.hidden = true; return; }
-      const q = query.toLowerCase();
+      const q = normalize(query);
       const hits = postIndex.filter(p =>
-        p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)
+        normalize(p.title).includes(q) || normalize(p.excerpt).includes(q)
       ).slice(0, 6);
       if (!hits.length) {
         searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;

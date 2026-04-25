@@ -44,6 +44,13 @@ function formatDate(date: Date) {
         <Content />
       </div>
 
+      {post.data.source && (
+        <div class="post__source">
+          <span class="post__source-label">Fonte:</span>
+          <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post__source-link">{new URL(post.data.source).hostname.replace('www.', '')}</a>
+        </div>
+      )}
+
       <div class="post__tags">
         {post.data.tags.map(tag => (
           <a href={`/tag/${tag}`} class="post__tag">#{tag}</a>

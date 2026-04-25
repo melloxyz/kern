@@ -6,6 +6,7 @@ tags: [OpenAI, agentes, enterprise, API, workflows]
 excerpt: "OpenAI lança GPT-5.5 com foco em orquestração de tarefas e memória persistente. A mudança de chat para agente autônomo redefine o valor da API para empresas."
 readTime: "5 min"
 featured: true
+source: "https://openai.com/"
 draft: false
 ---
 
