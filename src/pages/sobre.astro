@@ -3,35 +3,56 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Sobre" description="O que é o KERN.IA e como o projeto funciona.">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Sobre o KERN.IA</h1>
-		</header>
-		<div class="post__content">
-			<p>
-					O KERN.IA é um projeto editorial focado em inteligência artificial sem hype vazio.
-					A ideia é simples: publicar notícias e análises curtas, com contexto suficiente para
-					você entender o que importa sem precisar atravessar cinco abas de marketing.
-				</p>
+  <div class="container--post">
+    <article class="post">
+      <div class="post__back-wrap" style="margin-bottom: 24px;">
+        <button class="post__back" onclick="window.history.back()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Voltar
+        </button>
+      </div>
 
-				<h2>Como navegar</h2>
-				<ul>
-					<li>Use os módulos por categoria na lateral para filtrar por tema.</li>
-					<li>Abra o arquivo por mês para revisar o histórico por período.</li>
-					<li>Use a busca no topo (atalho Ctrl+K) para encontrar um post rapidamente.</li>
-				</ul>
+      <header class="post__header">
+        <h1 class="post__title">Sobre o KERN.IA</h1>
+      </header>
 
-				<h2>Princípios editoriais</h2>
-				<ul>
-					<li>Texto direto, sem paywall e sem publicidade invasiva.</li>
-					<li>Foco em impacto prático: produto, mercado, segurança e trabalho.</li>
-					<li>Preferência por clareza sobre volume.</li>
-				</ul>
+      <div class="post__body">
+        <p>
+          O <strong>KERN.IA</strong> é um projeto editorial focado em inteligência artificial, mas sem o hype vazio do mercado. A ideia é simples: publicar notícias, análises curtas e artigos densos, entregando o contexto exato que você precisa para entender o que realmente importa — sem precisar atravessar cinco abas de marketing ou artigos rasos gerados em massa.
+        </p>
 
-				<p>
-					Se quiser acompanhar as publicações sem depender de rede social, assine o RSS no rodapé.
-				</p>
-			</div>
-		</article>
-	</div>
+        <h2>Como navegar</h2>
+        <p>O site foi desenhado para ser rápido e direto ao ponto:</p>
+        <ul>
+          <li>Use a <strong>Navegação de Categorias</strong> na lateral esquerda para filtrar o conteúdo por tema de interesse.</li>
+          <li>Acesse a <strong>Timeline</strong> na lateral direita para navegar historicamente pelas publicações.</li>
+          <li>Utilize a barra de busca no topo (atalho <kbd>Ctrl+K</kbd>) para encontrar informações e posts em milissegundos.</li>
+        </ul>
+
+        <h2>Princípios Editoriais</h2>
+        <p>Nós acreditamos em uma web mais limpa e focada no leitor. Por isso, seguimos regras estritas:</p>
+        <ul>
+          <li><strong>Texto direto e honesto:</strong> Sem paywalls, sem pop-ups, sem newsletters forçadas e sem publicidade invasiva.</li>
+          <li><strong>Foco prático:</strong> Nossa cobertura foca no impacto real das tecnologias (produto, mercado, segurança e trabalho), ignorando rumores irrelevantes.</li>
+          <li><strong>Sinal contra ruído:</strong> Preferimos a clareza absoluta e o rigor técnico sobre o volume de postagens diárias.</li>
+        </ul>
+
+        <h2>Tecnologia e Comunidade</h2>
+        <p>
+          Este projeto é open-source, estático, extremamente rápido e construído com <strong>Astro</strong>. A arquitetura não utiliza banco de dados e todo o conteúdo é versionado via Markdown. Você pode acessar, auditar e fazer fork do código-fonte diretamente em nosso <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">repositório no GitHub</a>.
+        </p>
+        <p>
+          Se você gostou da iniciativa, sinta-se à vontade para deixar uma ⭐ no repositório! Toda ajuda é bem-vinda: se encontrar bugs, tiver sugestões de melhorias ou ideias para novos recursos, não hesite em <a href="https://github.com/melloxyz/kern-ia/issues" target="_blank" rel="noopener">abrir uma issue</a>.
+        </p>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border);" />
+
+        <p>
+          <em>Se quiser acompanhar as publicações sem depender de algoritmos de redes sociais, considere assinar o nosso <a href="/rss.xml">Feed RSS</a>.</em>
+        </p>
+      </div>
+    </article>
+  </div>
 </Base>
