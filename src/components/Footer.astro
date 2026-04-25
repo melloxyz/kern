@@ -5,27 +5,34 @@ import { CATEGORIES } from '../utils/posts';
   <div class="site-footer">
     <div class="site-footer__top">
       <div class="site-footer__identity">
-        <a href="/" class="site-footer__brand">KERN<span>.IA</span></a>
-        <p class="site-footer__desc">Inteligência artificial sem hype vazio. Foco em produto, mercado, segurança e trabalho.</p>
+        <a href="/" class="site-footer__brand">KERN<span class="dot">.</span></a>
+        <p class="site-footer__desc">Filtramos apenas o que importa de verdade!</p>
+        <div class="site-footer__social">
+          <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+          <span class="sep">/</span>
+          <a href="/rss.xml">RSS</a>
+        </div>
       </div>
       
       <div class="site-footer__navs">
-        <nav class="site-footer__col" aria-label="Projeto">
-          <span class="site-footer__col-title">Projeto</span>
-          <a href="/sobre">Sobre o KERN.IA</a>
-          <a href="/rss.xml">Feed RSS</a>
-          <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">GitHub / Open-Source</a>
+        <nav class="site-footer__col" aria-label="Explorar">
+          <span class="site-footer__col-title">Explorar</span>
+          {CATEGORIES.slice(0, 4).map((c) => (
+            <a href={`/${c.slug}`}>{c.label}</a>
+          ))}
         </nav>
-        <nav class="site-footer__col" aria-label="Categorias em Destaque">
-          <span class="site-footer__col-title">Tópicos</span>
-          {CATEGORIES.slice(0, 4).map(c => <a href={`/${c.slug}`}>{c.label}</a>)}
+        <nav class="site-footer__col" aria-label="Conteúdo">
+          <span class="site-footer__col-title">Conteúdo</span>
+          <a href="/sobre">Sobre o projeto</a>
+          <a href="/arquivo/2026/04">Arquivo recente</a>
+          <a href="/rss.xml">Feed RSS</a>
         </nav>
       </div>
     </div>
     
     <div class="site-footer__bottom">
-      <span class="site-footer__copy">© {new Date().getFullYear()} KERN.IA. Construído com Astro.</span>
-      <span class="site-footer__tagline">sem ads · sem paywalls</span>
+      <span class="site-footer__copy">© {new Date().getFullYear()} KERN. Todos os direitos reservados.</span>
+      <span class="site-footer__tagline">Sinal acima do ruído.</span>
     </div>
   </div>
 </footer>

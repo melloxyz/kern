@@ -1,6 +1,7 @@
-# KERN.IA
+# KERN.
 
-Blog de inteligência artificial sem enrolação.  
+Blog de inteligência artificial levada a sério.  
+Slogan: **Filtramos apenas o que importa de verdade!**
 Stack: **Astro** + **Vercel** + **Git** + Markdown puro.
 
 ---
@@ -18,22 +19,21 @@ Sem painel admin. Sem CMS. Sem dependências extras.
 ## Estrutura do projeto
 
 ```
-kern-ia/
+kern/
 ├── src/
+│   ├── components/         ← Componentes Astro (Header, Footer, etc)
 │   ├── content/
-│   │   └── posts/              ← AQUI ficam seus posts
-│   │       ├── 2026-04-24-gpt55-lancado.md
-│   │       ├── 2026-04-23-mythos-restrito.md
-│   │       └── 2026-04-22-deepseek-v4.md
+│   │   └── posts/          ← AQUI ficam seus posts
 │   ├── layouts/
-│   │   └── Base.astro          ← Layout HTML base (header, nav, footer)
+│   │   └── Base.astro      ← Layout HTML base
 │   ├── pages/
-│   │   ├── index.astro         ← Feed principal
-│   │   ├── sobre.astro         ← Página sobre
-│   │   ├── posts/[slug].astro  ← Página individual de cada post
-│   │   └── tag/[tag].astro     ← Página de tag
-│   └── styles/
-│       └── global.css          ← Todo o CSS do site
+│   │   ├── index.astro     ← Feed principal
+│   │   ├── sobre.astro     ← Página sobre
+│   │   └── ...
+│   ├── styles/
+│   │   └── global.css      ← Todo o CSS do site
+│   └── utils/
+│       └── posts.ts        ← Lógica de processamento de posts
 └── public/
     └── favicon.svg
 ```
@@ -71,64 +71,29 @@ Conteúdo do post aqui em Markdown normal.
 - `POLÍTICA`
 - `PESQUISA`
 
-### featured: true
-
-Posts com `featured: true` aparecem no grid de destaque no topo do feed (máx. 2 por vez).  
-Use com parcimônia — só pra notícias realmente importantes.
-
-### draft: true
-
-Posts com `draft: true` não aparecem no site. Use pra rascunhos.
-
 ---
 
-## Setup local
+## Comandos Úteis
 
 ```bash
-# Instalar dependências
-npm install
-
-# Rodar em desenvolvimento (http://localhost:4321)
+# Rodar em desenvolvimento
 npm run dev
+
+# Checagem de tipos e padrões
+npm run check
 
 # Build de produção
 npm run build
-
-# Preview do build
-npm run preview
 ```
-
----
-
-## Deploy na Vercel
-
-### Primeira vez
-
-1. Crie um repositório no GitHub e faça push do projeto
-2. Acesse [vercel.com](https://vercel.com) → **Add New Project**
-3. Conecte o repositório
-4. Framework: **Astro** (detectado automaticamente)
-5. Clique em **Deploy**
-
-### Publicando posts
-
-```bash
-# Cria o .md, depois:
-git add .
-git commit -m "post: título do post"
-git push
-```
-
-A Vercel detecta o push e publica em ~30 segundos.
 
 ---
 
 ## Customizações rápidas
 
-**Mudar nome do site:** edite `src/layouts/Base.astro` — procure por `KERN<span>.IA</span>`
+**Logo do site:** O logo é definido no CSS (`.dot`) e nos componentes `Header.astro` e `Footer.astro`.
 
-**Mudar cores:** edite as variáveis CSS em `src/styles/global.css` na seção `:root`
+**Mudar cores:** edite as variáveis CSS em `src/styles/global.css` na seção `:root`.
 
-**Adicionar categoria nova:** edite o `z.enum` em `src/content/config.ts` e o array `navLinks` em `Base.astro`
+**Adicionar categoria nova:** edite o `z.enum` em `src/content/config.ts` e o objeto `CATEGORIES` em `src/utils/posts.ts`.
 
-**Domínio customizado:** configure em Vercel → Project Settings → Domains
+**Domínio customizado:** configure em Vercel → Project Settings → Domains.

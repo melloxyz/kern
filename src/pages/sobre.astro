@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Sobre" description="O que é o KERN.IA e como o projeto funciona.">
+<Base title="Sobre" description="Manifesto editorial e princípios da marca KERN.">
   <div class="container--post">
     <article class="post">
-      <div class="post__back-wrap" style="margin-bottom: 24px;">
+      <div class="post__back-wrap" style="margin-bottom: 40px;">
         <button class="post__back" onclick="window.history.back()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -14,45 +14,74 @@ import Base from '../layouts/Base.astro';
         </button>
       </div>
 
-      <header class="post__header">
-        <h1 class="post__title">Sobre o KERN.IA</h1>
+      <header class="post__header" style="margin-bottom: 60px;">
+        <h1 class="post__title" style="border: none; padding: 0; margin: 0; font-size: 42px;">Sobre o KERN<span style="color: var(--red);">.</span></h1>
+        <p class="post__subtitle" style="font-family: var(--ui); font-size: 1.25rem; color: var(--ink-mid); margin-top: 12px; font-weight: 500;">Filtramos apenas o que importa de verdade!</p>
       </header>
 
       <div class="post__body">
-        <p>
-          O <strong>KERN.IA</strong> é um projeto editorial focado em inteligência artificial, mas sem o hype vazio do mercado. A ideia é simples: publicar notícias, análises curtas e artigos densos, entregando o contexto exato que você precisa para entender o que realmente importa — sem precisar atravessar cinco abas de marketing ou artigos rasos gerados em massa.
-        </p>
+        <section style="margin-bottom: 60px;">
+          <p style="font-size: 1.2rem; line-height: 1.7; color: var(--ink);">
+            <strong>KERN</strong> é um laboratório editorial independente dedicado à cobertura técnica e analítica do ecossistema de inteligência artificial. Nossa missão é extrair o <em>núcleo</em> (kernel) das transformações tecnológicas, descartando o ruído mercadológico para entregar contexto acionável.
+          </p>
+        </section>
 
-        <h2>Como navegar</h2>
-        <p>O site foi desenhado para ser rápido e direto ao ponto:</p>
-        <ul>
-          <li>Use a <strong>Navegação de Categorias</strong> na lateral esquerda para filtrar o conteúdo por tema de interesse.</li>
-          <li>Acesse a <strong>Timeline</strong> na lateral direita para navegar historicamente pelas publicações.</li>
-          <li>Utilize a barra de busca no topo (atalho <kbd>Ctrl+K</kbd>) para encontrar informações e posts em milissegundos.</li>
-        </ul>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+          <div style="background: var(--bg-card); padding: 32px; border: 1px solid var(--border); border-radius: 8px;">
+            <h3 style="margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--red);">O Manifesto</h3>
+            <ul style="list-style: none; padding: 0; margin: 20px 0 0;">
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span><strong>Sem ads:</strong> Sua atenção é o bem mais valioso; não a vendemos para terceiros.</span>
+              </li>
+              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M7 11V7a5 5 0 0 1 10 0v4"></path><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M12 16v3"></path></svg>
+                <span><strong>Sem paywalls:</strong> O conhecimento técnico deve ser livre. Acreditamos na web aberta.</span>
+              </li>
+              <li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <span><strong>Sinal Puro:</strong> Valorizamos o rigor técnico. Se não há nada novo a dizer, ficamos em silêncio.</span>
+              </li>
+            </ul>
+          </div>
 
-        <h2>Princípios Editoriais</h2>
-        <p>Nós acreditamos em uma web mais limpa e focada no leitor. Por isso, seguimos regras estritas:</p>
-        <ul>
-          <li><strong>Texto direto e honesto:</strong> Sem paywalls, sem pop-ups, sem newsletters forçadas e sem publicidade invasiva.</li>
-          <li><strong>Foco prático:</strong> Nossa cobertura foca no impacto real das tecnologias (produto, mercado, segurança e trabalho), ignorando rumores irrelevantes.</li>
-          <li><strong>Sinal contra ruído:</strong> Preferimos a clareza absoluta e o rigor técnico sobre o volume de postagens diárias.</li>
-        </ul>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <h3 style="margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-light);">Curadoria Humana</h3>
+            <p style="margin-top: 12px;">
+              Diferente de agregadores automatizados, cada peça no <strong>KERN</strong> passa por uma curadoria humana técnica. Analisamos repositórios, papers e implementações reais antes de publicar qualquer conclusão.
+            </p>
+            <p>
+              O ponto (.) no nosso nome representa o fim do ruído. É a precisão absoluta que buscamos em cada análise.
+            </p>
+          </div>
+        </div>
 
-        <h2>Tecnologia e Comunidade</h2>
-        <p>
-          Este projeto é open-source, estático, extremamente rápido e construído com <strong>Astro</strong>. A arquitetura não utiliza banco de dados e todo o conteúdo é versionado via Markdown. Você pode acessar, auditar e fazer fork do código-fonte diretamente em nosso <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">repositório no GitHub</a>.
-        </p>
-        <p>
-          Se você gostou da iniciativa, sinta-se à vontade para deixar uma ⭐ no repositório! Toda ajuda é bem-vinda: se encontrar bugs, tiver sugestões de melhorias ou ideias para novos recursos, não hesite em <a href="https://github.com/melloxyz/kern-ia/issues" target="_blank" rel="noopener">abrir uma issue</a>.
-        </p>
+        <section style="border-top: 1px solid var(--border); padding-top: 40px; margin-top: 60px;">
+          <h2>Arquitetura Técnica</h2>
+          <p>
+            O <strong>KERN</strong> é construído com foco em velocidade e privacidade. Utilizamos a stack <strong>Astro</strong> para gerar um site 100% estático, garantindo performance máxima em qualquer dispositivo.
+          </p>
+          <ul style="margin-top: 24px;">
+            <li><strong>Código Aberto:</strong> O motor do site é transparente e auditável no <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">GitHub</a>.</li>
+            <li><strong>Privacidade por Design:</strong> Não usamos cookies de rastreamento, Google Analytics ou qualquer ferramenta que comprometa seu anonimato.</li>
+            <li><strong>Portabilidade:</strong> Todo conteúdo é escrito em Markdown, garantindo que o conhecimento permaneça legível por décadas.</li>
+          </ul>
+        </section>
 
-        <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border);" />
-
-        <p>
-          <em>Se quiser acompanhar as publicações sem depender de algoritmos de redes sociais, considere assinar o nosso <a href="/rss.xml">Feed RSS</a>.</em>
-        </p>
+        <footer style="margin-top: 80px; padding: 40px; background: var(--ink); color: #fff; border-radius: 8px; text-align: center;">
+          <p style="font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 16px;">Sinal acima do ruído</p>
+          <h2 style="color: #fff; border: none; margin: 0 0 20px; font-size: 1.5rem;">Acompanhe o fluxo.</h2>
+          <a href="/rss.xml" style="display: inline-block; padding: 12px 24px; background: #fff; color: #000; font-weight: 700; text-decoration: none; border-radius: 4px; font-family: var(--ui);">Assinar Feed RSS</a>
+        </footer>
       </div>
     </article>
   </div>
 </Base>
+
+<style>
+  @media (max-width: 768px) {
+    div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

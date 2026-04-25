@@ -39,9 +39,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>KERN.IA</title>
+    <title>KERN</title>
     <link>${siteUrl}</link>
-    <description>Inteligência artificial sem enrolação.</description>
+    <description>Menos hype. Mais contexto.</description>
     <language>pt-BR</language>
     ${items}
   </channel>

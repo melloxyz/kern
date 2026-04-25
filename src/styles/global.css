@@ -1,5 +1,5 @@
 /* ===================================
-   KERN.IA — Design System v2
+   KERN — Design System v2
    =================================== */
 
 :root {
@@ -121,16 +121,24 @@ h3 {
   font-family: var(--ui);
   font-size: 25px;
   font-weight: 800;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
   flex-shrink: 0;
   line-height: 1;
+  color: var(--ink);
 }
-.site-header__logo span {
+.site-header__logo .dot {
   color: var(--red);
+  margin-left: 0.5px;
 }
 .site-header__logo:hover {
-  color: inherit;
+  color: var(--red);
+}
+.site-header__logo:hover .dot {
+  color: var(--ink);
+}
+[data-theme="dark"] .site-header__logo:hover .dot {
+  color: #fff;
 }
 
 /* Search */
@@ -863,22 +871,51 @@ h3 {
 
 .site-footer__brand {
   font-family: var(--ui);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -0.2px;
-  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
   display: inline-block;
+  color: var(--ink);
 }
-.site-footer__brand span {
+.site-footer__brand .dot {
   color: var(--red);
 }
 
+.site-footer__social {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-light);
+}
+.site-footer__social a {
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.site-footer__social a:hover {
+  color: var(--red);
+}
+.site-footer__social .sep {
+  color: var(--border);
+}
+
 .site-footer__desc {
-  font-family: var(--ui);
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
   color: var(--ink-mid);
-  line-height: 1.5;
+  line-height: 1.4;
+  font-weight: 500;
+  max-width: 240px;
+}
+
+.site-footer__manifesto {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-light);
+  font-family: var(--mono);
+  margin-bottom: 4px;
 }
 
 .site-footer__navs {

@@ -14,13 +14,13 @@ interface Props {
 }
 
 const {
-  title = 'KERN.IA',
-  description = 'Inteligência artificial sem enrolação.',
+  title = 'KERN',
+  description = 'Filtramos apenas o que importa de verdade! Contexto e análise técnica sobre IA sem ruído.',
   image = '/favicon.svg',
   ogType = 'website',
 } = Astro.props;
 
-const fullTitle = title === 'KERN.IA' ? title : `${title} — KERN.IA`;
+const fullTitle = title === 'KERN' ? title : `${title} — KERN`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
 const { pathname } = Astro.url;
