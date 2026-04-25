@@ -14,8 +14,8 @@
   --border-dark: #1a1a1a;
   --mono: "Courier New", "Courier", monospace;
   --serif: "Georgia", "Times New Roman", serif;
-  --max: 900px;
-  --post-max: 680px;
+  --max: 1100px;
+  --post-max: 900px;
 }
 
 *,
@@ -27,7 +27,7 @@
 }
 
 html {
-  font-size: 23px;
+  font-size: 23px; /* base do documento */
 }
 
 body {
@@ -61,7 +61,7 @@ h3 {
 
 .mono {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 12px; /* textos mono pequenos */
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -89,16 +89,27 @@ h3 {
   padding: 10px 0 8px;
   border-bottom: 1px solid var(--border);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 16px; /* linha superior do header */
   color: var(--ink-light);
   letter-spacing: 1px;
+  gap: 16px;
+  line-height: 1.4;
+  flex-wrap: wrap;
+}
+.site-header__date {
+  font-size: 1em; /* data do dia */
+  color: var(--ink-mid);
+}
+.site-header__statement {
+  font-size: 1em; /* slogan do topo */
+  color: var(--ink-mid);
 }
 .site-header__brand {
   padding: 20px 0 16px;
   text-align: center;
 }
 .site-header__logo {
-  font-size: clamp(42px, 9vw, 72px);
+  font-size: clamp(40px, 7vw, 70px); /* logo principal */
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 1;
@@ -108,7 +119,7 @@ h3 {
 }
 .site-header__tagline {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 18px; /* subtitulo da marca */
   color: var(--ink-light);
   margin-top: 6px;
   letter-spacing: 2px;
@@ -128,8 +139,8 @@ h3 {
   display: block;
   padding: 12px 16px;
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 1.5px;
+  font-size: 18px; /* links da navegacao */
+  letter-spacing: 1.2px;
   color: var(--ink-light);
   border-bottom: 2px solid transparent;
   white-space: nowrap;
@@ -179,7 +190,7 @@ h3 {
 }
 .divider__label {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 16px; /* rotulo do divisor */
   color: #aaa;
   letter-spacing: 2px;
 }
@@ -205,7 +216,7 @@ h3 {
 }
 .card__category {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px; /* categoria em destaque */
   font-weight: 700;
   color: #fff;
   background: var(--red);
@@ -214,28 +225,28 @@ h3 {
 }
 .card__date {
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-light);
+  font-size: 14px; /* data do card */
+  color: var(--ink-mid);
 }
 .card__title {
-  font-size: clamp(20px, 3vw, 26px);
+  font-size: clamp(23px, 3vw, 23px); /* titulo do card destaque */
   font-weight: 700;
   line-height: 1.35;
   margin-bottom: 12px;
 }
 .card__excerpt {
-  font-size: 16px;
+  font-size: 17px; /* resumo do card destaque */
   line-height: 1.7;
   color: var(--ink-mid);
   margin-bottom: 16px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .card__read {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px; /* ler mais do card */
   color: var(--red);
   letter-spacing: 1px;
 }
@@ -266,34 +277,34 @@ h3 {
 }
 .post-row__category {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 15px; /* categoria da lista */
   font-weight: 700;
   color: var(--red);
   letter-spacing: 1.5px;
 }
 .post-row__date {
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-light);
+  font-size: 14px; /* data da lista */
+  color: var(--ink-mid);
 }
 .post-row__title {
-  font-size: clamp(18px, 2.6vw, 22px);
+  font-size: clamp(18px, 2.6vw, 22px); /* titulo do post na lista */
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 8px;
 }
 .post-row__excerpt {
-  font-size: 15px;
+  font-size: 17px; /* resumo da lista */
   line-height: 1.65;
   color: #555;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .post-row__time {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 15px; /* tempo de leitura na lista */
   color: var(--ink-light);
   white-space: nowrap;
   padding-top: 4px;
@@ -306,8 +317,8 @@ h3 {
 
 .post__back {
   font-family: var(--mono);
-  font-size: 13px;
-  color: var(--ink-light);
+  font-size: 16px; /* link de voltar */
+  color: var(--ink-mid);
   letter-spacing: 1px;
   margin-bottom: 32px;
   display: inline-block;
@@ -329,7 +340,7 @@ h3 {
 }
 .post__category {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 15px; /* categoria do artigo */
   font-weight: 700;
   color: var(--red);
   letter-spacing: 2px;
@@ -337,15 +348,15 @@ h3 {
 .post__date,
 .post__readtime {
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink-light);
+  font-size: 15px; /* metadados do artigo */
+  color: var(--ink-mid);
 }
 .post__sep {
   color: var(--ink-faint);
 }
 
 .post__title {
-  font-size: clamp(28px, 4.5vw, 38px);
+  font-size: clamp(28px, 4.5vw, 33px); /* titulo do artigo */
   font-weight: 700;
   line-height: 1.3;
   border-bottom: 3px solid var(--ink);
@@ -354,7 +365,7 @@ h3 {
 }
 
 .post__body {
-  font-size: 19px;
+  font-size: 19px; /* texto principal do artigo */
   line-height: 1.9;
   color: #2a2a2a;
 }
@@ -362,13 +373,13 @@ h3 {
   margin-bottom: 1.4em;
 }
 .post__body h2 {
-  font-size: 1.35em;
-  margin: 2em 0 0.8em;
+  font-size: 1.35em; /* subtitulo h2 */
+  margin: 1.5em 0 0.8em;
   border-bottom: 1px solid var(--border);
   padding-bottom: 8px;
 }
 .post__body h3 {
-  font-size: 1.15em;
+  font-size: 1.15em; /* subtitulo h3 */
   margin: 1.6em 0 0.6em;
 }
 .post__body ul,
@@ -392,7 +403,7 @@ h3 {
 }
 .post__body code {
   font-family: var(--mono);
-  font-size: 0.92em;
+  font-size: 0.92em; /* codigo inline */
   background: #e8e4dc;
   padding: 2px 6px;
   border-radius: 2px;
@@ -404,7 +415,7 @@ h3 {
   overflow-x: auto;
   margin: 1.5em 0;
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 14px; /* codigo em bloco */
   line-height: 1.6;
 }
 .post__body pre code {
@@ -421,7 +432,7 @@ h3 {
 }
 .post__tag {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px; /* tag do post */
   background: var(--ink);
   color: var(--bg);
   padding: 4px 10px;
@@ -441,7 +452,7 @@ h3 {
 }
 .site-footer__brand {
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 20px; /* marca do footer */
   font-weight: 900;
   letter-spacing: -0.5px;
 }
@@ -450,7 +461,7 @@ h3 {
 }
 .site-footer__copy {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 15px; /* texto legal do footer */
   color: var(--ink-light);
 }
 
@@ -461,11 +472,11 @@ h3 {
   margin-bottom: 28px;
 }
 .tag-header h1 {
-  font-size: clamp(28px, 4vw, 36px);
+  font-size: clamp(28px, 4vw, 36px); /* titulo da pagina de tags */
 }
 .tag-header__count {
   font-weight: 400;
-  font-size: 0.7em;
+  font-size: 0.82em; /* contador de posts da tag */
   color: #888;
   margin-left: 0.35em;
 }
