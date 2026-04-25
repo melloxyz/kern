@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import ShareButtons from '../../components/ShareButtons.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -49,6 +50,8 @@ function formatDate(date: Date) {
       <div class="post__body">
         <Content />
       </div>
+
+      <ShareButtons title={post.data.title} url={Astro.url.href} />
 
       {post.data.source && (
         <div class="post__source">
