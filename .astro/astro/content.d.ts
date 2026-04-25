@@ -173,6 +173,48 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"2026-04-25-anthropic-aws-5gw.md": {
+	id: "2026-04-25-anthropic-aws-5gw.md";
+  slug: "2026-04-25-anthropic-aws-5gw";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-claude-opus47-performance-sobe.md": {
+	id: "2026-04-25-claude-opus47-performance-sobe.md";
+  slug: "2026-04-25-claude-opus47-performance-sobe";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-gemma4-modelo-aberto.md": {
+	id: "2026-04-25-gemma4-modelo-aberto.md";
+  slug: "2026-04-25-gemma4-modelo-aberto";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-gpt55-agentes-nativos.md": {
+	id: "2026-04-25-gpt55-agentes-nativos.md";
+  slug: "2026-04-25-gpt55-agentes-nativos";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-muse-spark-meta.md": {
+	id: "2026-04-25-muse-spark-meta.md";
+  slug: "2026-04-25-muse-spark-meta";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-salvaguardas-eleitoral-da-anthropic.md": {
+	id: "2026-04-25-salvaguardas-eleitoral-da-anthropic.md";
+  slug: "2026-04-25-salvaguardas-eleitoral-da-anthropic";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 };
 
 	};
