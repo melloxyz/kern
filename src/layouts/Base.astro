@@ -7,42 +7,46 @@ interface Props {
   description?: string;
 }
 
-const { title = 'RuídoIA', description = 'Inteligência artificial sem enrolação.' } = Astro.props;
+const {
+  title = 'RuídoIA',
+  description = 'Inteligência artificial sem enrolação.',
+} = Astro.props;
+
 const fullTitle = title === 'RuídoIA' ? title : `${title} — RuídoIA`;
-
-const today = new Date().toLocaleDateString('pt-BR', {
-  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-});
-
-const navLinks = [
-  { href: '/',            label: 'Feed' },
-  { href: '/modelos',     label: 'Modelos' },
-  { href: '/seguranca',   label: 'Segurança' },
-  { href: '/trabalho',    label: 'Trabalho' },
-  { href: '/negocios',    label: 'Negócios' },
-  { href: '/politica',    label: 'Política' },
-  { href: '/sobre',       label: 'Sobre' },
-];
-
 const currentPath = Astro.url.pathname;
 
-// Build global archive (months) so "Nesta página" can live in the layout
-const allPostsForArchive = await getCollection('posts', ({ data }) => !data.draft);
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+
+const CATEGORIES = ['MODELOS', 'SEGURANÇA', 'OPEN SOURCE', 'TRABALHO', 'NEGÓCIOS', 'POLÍTICA', 'PESQUISA'];
+const catCounts = {};
+for (const cat of CATEGORIES) catCounts[cat] = 0;
+for (const post of allPosts) {
+  if (catCounts[post.data.category] !== undefined) catCounts[post.data.category]++;
+}
+
+const catLinks = [
+  { href: '/',            label: 'Todos',       cat: null },
+  { href: '/modelos',     label: 'Modelos',      cat: 'MODELOS' },
+  { href: '/seguranca',   label: 'Segurança',    cat: 'SEGURANÇA' },
+  { href: '/open-source', label: 'Open Source',  cat: 'OPEN SOURCE' },
+  { href: '/trabalho',    label: 'Trabalho',     cat: 'TRABALHO' },
+  { href: '/negocios',    label: 'Negócios',     cat: 'NEGÓCIOS' },
+  { href: '/politica',    label: 'Política',     cat: 'POLÍTICA' },
+  { href: '/pesquisa',    label: 'Pesquisa',     cat: 'PESQUISA' },
+];
 
 const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
                    'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
 const archiveMap = new Map();
-for (const post of allPostsForArchive) {
+for (const post of [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime())) {
   const y = post.data.date.getFullYear();
   const m = post.data.date.getMonth();
   const key = `${y}-${String(m).padStart(2,'0')}`;
   if (!archiveMap.has(key)) {
     archiveMap.set(key, {
       label: `${MONTHS_PT[m]} ${y}`,
-      year: y,
-      month: m + 1,
-      count: 0,
+      year: y, month: m + 1, count: 0,
       href: `/arquivo/${y}/${String(m+1).padStart(2,'0')}`,
     });
   }
@@ -50,8 +54,8 @@ for (const post of allPostsForArchive) {
 }
 const archive = [...archiveMap.values()];
 
-const pathMatch = Astro.url.pathname.match(/^\/arquivo\/(\d{4})\/(\d{2})/);
-const activeKey = pathMatch ? `${pathMatch[1]}-${pathMatch[2]}` : undefined;
+const pathMatch = currentPath.match(/^\/arquivo\/(\d{4})\/(\d{2})/);
+const activeArchiveKey = pathMatch ? `${pathMatch[1]}-${pathMatch[2]}` : undefined;
 ---
 
 <!doctype html>
@@ -62,7 +66,6 @@ const activeKey = pathMatch ? `${pathMatch[1]}-${pathMatch[2]}` : undefined;
   <meta name="description" content={description} />
   <title>{fullTitle}</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <!-- Open Graph -->
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
@@ -70,85 +73,166 @@ const activeKey = pathMatch ? `${pathMatch[1]}-${pathMatch[2]}` : undefined;
 <body>
 
   <header class="site-header">
-    <div class="container">
-      <div class="site-header__top">
-        <span>{today}</span>
-        <span>sem ads · sem paywalls · só texto</span>
+    <div class="site-header__inner">
+
+      <a href="/" class="site-header__logo">RUÍDO<span>IA</span></a>
+
+      <div class="site-header__search" id="search-wrap">
+        <svg class="site-header__search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="search" id="search-input" placeholder="Buscar posts..." autocomplete="off" aria-label="Buscar" />
+        <div class="search-results" id="search-results" hidden></div>
       </div>
-      <div class="site-header__brand">
-        <a href="/">
-          <h1 class="site-header__logo">RUÍDO<span>IA</span></h1>
+
+      <div class="site-header__actions">
+        <a href="/sobre" class="site-header__action site-header__sobre">Sobre</a>
+        <div class="site-header__sep"></div>
+        <a href="https://github.com/melloxyz/ruidoia" target="_blank" rel="noopener" class="site-header__action" title="GitHub" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
         </a>
-        <p class="site-header__tagline">inteligência artificial sem enrolação</p>
+        <button id="theme-toggle" class="site-header__action" title="Alternar tema" aria-label="Tema claro/escuro">
+          <svg id="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+          <svg id="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
       </div>
+
     </div>
   </header>
 
-  <nav class="site-nav">
-    <div class="container">
-      <ul class="site-nav__list">
-        {navLinks.map(link => (
+  <div class="page-layout">
+
+    <nav class="page-layout__nav cat-nav" aria-label="Categorias">
+      <p class="cat-nav__title">Categorias</p>
+      <ul class="cat-nav__list">
+        {catLinks.map(link => (
           <li>
             <a
               href={link.href}
-              class="site-nav__link"
+              class="cat-nav__link"
               aria-current={currentPath === link.href ? 'page' : undefined}
             >
+              <span class="cat-nav__dot"></span>
               {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
-
-  <main>
-    <slot />
-  </main>
-
-  <aside class="archive archive--floating">
-    <nav>
-      <p class="archive__title">Nesta página</p>
-      <ul class="archive__list">
-        {archive.map(entry => (
-          <li class={`archive__item ${activeKey === `${entry.year}-${String(entry.month).padStart(2,'0')}` ? 'archive__item--active' : ''}`}>
-            <a href={entry.href}>
-              {entry.label}
-              <span class="archive__count">{entry.count}</span>
+              {link.cat !== null && (
+                <span class="cat-nav__count">{catCounts[link.cat] ?? 0}</span>
+              )}
             </a>
           </li>
         ))}
       </ul>
     </nav>
-  </aside>
 
-  <script>
-    (function () {
-      function updateArchiveTop() {
-        const nav = document.querySelector('.site-nav');
-        const archive = document.querySelector('.archive--floating');
-        if (!nav || !archive) return;
-        const navRect = nav.getBoundingClientRect();
-        const top = Math.max(navRect.bottom, 0) + 8;
-        archive.style.top = `${top}px`;
-      }
-      if (typeof window !== 'undefined') {
-        window.addEventListener('load', updateArchiveTop);
-        window.addEventListener('resize', updateArchiveTop);
-        window.addEventListener('scroll', updateArchiveTop, { passive: true });
-        requestAnimationFrame(updateArchiveTop);
-      }
-    })();
-  </script>
+    <main class="page-layout__main">
+      <slot />
+    </main>
+
+    <aside class="page-layout__archive">
+      <nav class="archive" aria-label="Arquivo por mês">
+        <p class="archive__title">Nesta página</p>
+        <ul class="archive__list">
+          {archive.map(entry => {
+            const key = `${entry.year}-${String(entry.month).padStart(2,'0')}`;
+            return (
+              <li class={`archive__item ${activeArchiveKey === key ? 'archive__item--active' : ''}`}>
+                <a href={entry.href}>
+                  <span>{entry.label}</span>
+                  <span class="archive__count">{entry.count}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
+
+  </div>
 
   <footer>
-    <div class="container">
-      <div class="site-footer">
-        <span class="site-footer__brand">RUÍDO<span>IA</span></span>
-        <span class="site-footer__copy">feito com texto · sem distrações · © {new Date().getFullYear()}</span>
-      </div>
+    <div class="site-footer">
+      <span class="site-footer__brand">RUÍDO<span>IA</span></span>
+      <span class="site-footer__copy">sem ads · sem paywalls · © {new Date().getFullYear()}</span>
     </div>
   </footer>
+
+  <script>
+    // Dark mode
+    const html = document.documentElement;
+    const btn  = document.getElementById('theme-toggle');
+    const moon = document.getElementById('icon-moon');
+    const sun  = document.getElementById('icon-sun');
+
+    function applyTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      if (moon) moon.style.display = dark ? 'none' : 'block';
+      if (sun)  sun.style.display  = dark ? 'block' : 'none';
+    }
+
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let isDark = stored ? stored === 'dark' : prefersDark;
+    applyTheme(isDark);
+
+    btn?.addEventListener('click', () => {
+      isDark = !isDark;
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      applyTheme(isDark);
+    });
+
+    // Search
+    const searchInput   = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    let postIndex = [];
+
+    async function loadIndex() {
+      if (postIndex.length) return;
+      try {
+        const res = await fetch('/search-index.json');
+        if (res.ok) postIndex = await res.json();
+      } catch {}
+    }
+
+    function renderResults(query) {
+      if (!searchResults) return;
+      if (!query.trim()) { searchResults.hidden = true; return; }
+      const q = query.toLowerCase();
+      const hits = postIndex.filter(p =>
+        p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)
+      ).slice(0, 6);
+      if (!hits.length) {
+        searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;
+      } else {
+        searchResults.innerHTML = hits.map(p => `
+          <a class="search-results__item" href="/posts/${p.slug}">
+            <div class="search-results__cat">${p.category}</div>
+            <div class="search-results__title">${p.title}</div>
+          </a>
+        `).join('');
+      }
+      searchResults.hidden = false;
+    }
+
+    searchInput?.addEventListener('focus', loadIndex);
+    searchInput?.addEventListener('input', e => renderResults(e.target.value));
+    document.addEventListener('click', e => {
+      if (!document.getElementById('search-wrap')?.contains(e.target)) {
+        if (searchResults) searchResults.hidden = true;
+      }
+    });
+    searchInput?.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && searchResults) searchResults.hidden = true;
+    });
+  </script>
 
 </body>
 </html>

@@ -8,63 +8,60 @@ const allPosts = (await getCollection('posts', ({ data }) => !data.draft))
 const featured = allPosts.filter(p => p.data.featured);
 const rest     = allPosts.filter(p => !p.data.featured);
 
-const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-
 function formatDate(date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 ---
 
 <Base>
-  <div class="container">
-    <div class="feed-layout">
+  <div class="feed">
 
-      <div class="feed-layout__main">
-
-        {featured.length > 0 && (
-          <div class={`feed__featured ${featured.length === 1 ? 'feed__featured-single' : ''}`}>
-            {featured.map(post => (
-              <a href={`/posts/${post.slug}`} class="card">
-                <div class="card__meta">
-                  <span class="card__category">{post.data.category}</span>
-                  <span class="card__date">{formatDate(post.data.date)}</span>
-                </div>
-                <h2 class="card__title">{post.data.title}</h2>
-                <p class="card__excerpt">{post.data.excerpt}</p>
-                <span class="card__read">ler → ({post.data.readTime ?? '5 min'})</span>
-              </a>
-            ))}
-          </div>
-        )}
-
-        {featured.length > 0 && rest.length > 0 && (
-          <div class="divider">
-            <span class="divider__label">Mais recentes</span>
-          </div>
-        )}
-
-        <div>
-          {rest.map(post => (
-            <a
-              href={`/posts/${post.slug}`}
-              class="post-row"
-            >
-              <div>
-                <div class="post-row__meta">
-                  <span class="post-row__category">{post.data.category}</span>
-                  <span class="post-row__date">· {formatDate(post.data.date)}</span>
-                </div>
-                <h2 class="post-row__title">{post.data.title}</h2>
-                <p class="post-row__excerpt">{post.data.excerpt}</p>
-              </div>
-              <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
-            </a>
-          ))}
-        </div>
-
+    {featured.length > 0 && (
+      <div class={`feed__featured ${featured.length === 1 ? 'feed__featured-single' : ''}`}>
+        {featured.map(post => (
+          <a href={`/posts/${post.slug}`} class="card">
+            {post.data.image && (
+              <img src={post.data.image} alt={post.data.title} class="card__image" loading="lazy" />
+            )}
+            <div class="card__meta">
+              <span class="card__category">{post.data.category}</span>
+              <span class="card__date">{formatDate(post.data.date)}</span>
+            </div>
+            <h2 class="card__title">{post.data.title}</h2>
+            <p class="card__excerpt">{post.data.excerpt}</p>
+            <span class="card__read">ler → ({post.data.readTime ?? '5 min'})</span>
+          </a>
+        ))}
       </div>
+    )}
 
+    {featured.length > 0 && rest.length > 0 && (
+      <div class="divider">
+        <span class="divider__label">Mais recentes</span>
+      </div>
+    )}
+
+    <div>
+      {rest.map(post => (
+        <a
+          href={`/posts/${post.slug}`}
+          class={`post-row ${post.data.image ? 'post-row--has-image' : ''}`}
+        >
+          <div>
+            <div class="post-row__meta">
+              <span class="post-row__category">{post.data.category}</span>
+              <span class="post-row__date">· {formatDate(post.data.date)}</span>
+            </div>
+            <h2 class="post-row__title">{post.data.title}</h2>
+            <p class="post-row__excerpt">{post.data.excerpt}</p>
+          </div>
+          {post.data.image
+            ? <img src={post.data.image} alt={post.data.title} class="post-row__thumb" loading="lazy" />
+            : <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
+          }
+        </a>
+      ))}
     </div>
+
   </div>
 </Base>
