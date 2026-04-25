@@ -4,7 +4,6 @@ date: 2026-01-10
 category: MODELOS
 tags: [lorem, ipsum, dolor]
 excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-readTime: "3 min"
 featured: false
 source: "https://example.com"
 draft: false

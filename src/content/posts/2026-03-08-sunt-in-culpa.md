@@ -4,7 +4,6 @@ date: 2026-03-08
 category: PESQUISA
 tags: [pesquisa, ciência, dados]
 excerpt: "Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede."
-readTime: "4 min"
 featured: false
 source: "https://arxiv.org"
 draft: false

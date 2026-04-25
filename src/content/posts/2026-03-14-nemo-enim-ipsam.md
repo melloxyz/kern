@@ -4,7 +4,6 @@ date: 2026-03-14
 category: MODELOS
 tags: [modelos, avaliação, ipsam]
 excerpt: "Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et."
-readTime: "2 min"
 featured: false
 draft: false
 ---

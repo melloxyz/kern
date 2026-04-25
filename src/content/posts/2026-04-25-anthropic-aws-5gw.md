@@ -4,7 +4,6 @@ date: 2026-04-25
 category: NEGÓCIOS
 tags: [Anthropic, AWS, infraestrutura, escala, competição]
 excerpt: "Anthropic e AWS fecham acordo para até 5 GW de nova capacidade de computação. A escala de infraestrutura vira barreira de entrada e altera a competição de longo prazo entre labs."
-readTime: "4 min"
 draft: false
 ---
 

@@ -4,7 +4,6 @@ date: 2026-04-25
 category: NEGÓCIOS
 tags: [Meta, personalização, memória, privacidade, produto]
 excerpt: "Meta anuncia Muse Spark como iniciativa para IA personalizada com memória de longo prazo. A personalização profunda pode migrar vantagem competitiva de modelo geral para modelo que aprende com você."
-readTime: "4 min"
 draft: false
 ---
 

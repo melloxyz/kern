@@ -4,7 +4,6 @@ date: 2026-03-29
 category: SEGURANÇA
 tags: [segurança, proteção, dados]
 excerpt: "Aenean lacinia bibendum nulla sed consectetur. Donec id elit non mi porta gravida at eget metus. Sed posuere consectetur est at lobortis."
-readTime: "5 min"
 featured: false
 source: "https://hackerone.com"
 draft: false

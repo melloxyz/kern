@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { getReadingTime } from '../utils/posts';
 
 export async function getStaticPaths() {
   const CATEGORY_ROUTES = [
@@ -59,7 +60,7 @@ function formatDate(date: Date) {
               <h2 class="post-row__title">{post.data.title}</h2>
               <p class="post-row__excerpt">{post.data.excerpt}</p>
             </div>
-            <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
+            <span class="post-row__time">{getReadingTime(post.body)}</span>
           </a>
         ))}
       </div>

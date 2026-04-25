@@ -74,6 +74,8 @@
   const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
   const searchResults = document.getElementById('search-results');
   let postIndex: any[] = [];
+  let selectedIndex = -1;
+  let currentHits: any[] = [];
 
   async function loadIndex() {
     if (postIndex.length) return;
@@ -87,24 +89,64 @@
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
 
+  function highlight(text: string, query: string) {
+    const nText = normalize(text);
+    const nQuery = normalize(query);
+    if (!nQuery) return text;
+
+    let result = "";
+    let lastIndex = 0;
+    let index = nText.indexOf(nQuery);
+
+    while (index !== -1) {
+      result += text.substring(lastIndex, index);
+      result += `<mark>${text.substring(index, index + nQuery.length)}</mark>`;
+      lastIndex = index + nQuery.length;
+      index = nText.indexOf(nQuery, lastIndex);
+    }
+    result += text.substring(lastIndex);
+    return result;
+  }
+
   function renderResults(query: string) {
     if (!searchResults) return;
-    if (!query.trim()) { searchResults.hidden = true; return; }
+    if (!query.trim()) { 
+      searchResults.hidden = true; 
+      currentHits = [];
+      selectedIndex = -1;
+      return; 
+    }
+    
     const q = normalize(query);
-    const hits = postIndex.filter(p =>
+    currentHits = postIndex.filter(p =>
       normalize(p.title).includes(q) || normalize(p.excerpt).includes(q)
     ).slice(0, 6);
-    if (!hits.length) {
+    
+    selectedIndex = -1;
+
+    if (!currentHits.length) {
       searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;
     } else {
-      searchResults.innerHTML = hits.map((p, index) => `
+      searchResults.innerHTML = currentHits.map((p, index) => `
         <a class="search-results__item" role="option" id="search-result-${index}" href="/posts/${p.slug}">
-          <div class="search-results__cat">${p.category}</div>
-          <div class="search-results__title">${p.title}</div>
+          <div class="search-results__cat">${highlight(p.category, query)}</div>
+          <div class="search-results__title">${highlight(p.title, query)}</div>
         </a>
       `).join('');
     }
     searchResults.hidden = false;
+  }
+
+  function updateSelection() {
+    const items = searchResults?.querySelectorAll('.search-results__item');
+    items?.forEach((item, idx) => {
+      if (idx === selectedIndex) {
+        item.classList.add('search-results__item--active');
+        item.scrollIntoView({ block: 'nearest' });
+      } else {
+        item.classList.remove('search-results__item--active');
+      }
+    });
   }
 
   async function focusSearchFromShortcut() {
@@ -141,6 +183,21 @@
     if (e.key === 'Escape' && searchResults) {
       searchResults.hidden = true;
       searchInput.blur();
+    }
+    if (!searchResults || searchResults.hidden) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, currentHits.length - 1);
+      updateSelection();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, -1);
+      updateSelection();
+    } else if (e.key === 'Enter' && selectedIndex >= 0) {
+      e.preventDefault();
+      const activeItem = searchResults.querySelector('.search-results__item--active') as HTMLAnchorElement;
+      if (activeItem) activeItem.click();
     }
   });
 </script>

@@ -4,7 +4,6 @@ date: 2026-04-25
 category: MODELOS
 tags: [Anthropic, coding, agentes, pricing, performance]
 excerpt: "Anthropic lança Claude Opus 4.7 com ganhos em codificação e tarefas multi-etapa. A melhoria reduz a necessidade de fallback entre modelos, impactando custo operacional em produção."
-readTime: "4 min"
 draft: false
 ---
 

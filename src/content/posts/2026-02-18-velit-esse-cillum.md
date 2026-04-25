@@ -4,7 +4,6 @@ date: 2026-02-18
 category: NEGÓCIOS
 tags: [negócios, mercado, análise]
 excerpt: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue."
-readTime: "3 min"
 featured: false
 source: "https://bloomberg.com"
 draft: false

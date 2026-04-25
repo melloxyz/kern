@@ -11,7 +11,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, remarkPluginFrontmatter } = await post.render();
+const readingTime = remarkPluginFrontmatter.readingTime;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', {
@@ -36,7 +37,7 @@ function formatDate(date: Date) {
         <span class="post__sep">·</span>
         <span class="post__date">{formatDate(post.data.date)}</span>
         <span class="post__sep">·</span>
-        <span class="post__readtime">{post.data.readTime ?? '5 min'} de leitura</span>
+        <span class="post__readtime">{readingTime} de leitura</span>
       </div>
 
       <h1 class="post__title">{post.data.title}</h1>

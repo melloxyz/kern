@@ -4,7 +4,6 @@ date: 2026-01-15
 category: SEGURANÇA
 tags: [segurança, lorem, teste]
 excerpt: "Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra."
-readTime: "4 min"
 featured: false
 draft: false
 ---

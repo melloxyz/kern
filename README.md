@@ -53,7 +53,6 @@ date: 2026-04-25
 category: MODELOS
 tags: [OpenAI, agentes, GPT]
 excerpt: "Resumo de 1-2 frases que aparece no feed. Seja direto."
-readTime: "5 min"
 source: "https://openai.com/blog/..."
 featured: false
 draft: false

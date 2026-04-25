@@ -942,8 +942,14 @@ h3 {
 .search-results__item:last-child {
   border-bottom: none;
 }
-.search-results__item:hover {
+.search-results__item:hover,
+.search-results__item--active {
   background: var(--bg-hover);
+}
+.search-results mark {
+  background: rgba(192, 57, 43, 0.12);
+  color: inherit;
+  border-radius: 2px;
 }
 .search-results__cat {
   font-family: var(--ui);

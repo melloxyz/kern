@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content';
+import { getReadingTime } from '../utils/posts';
 
 export const GET = async () => {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -9,6 +10,7 @@ export const GET = async () => {
     excerpt:  p.data.excerpt,
     category: p.data.category,
     date:     p.data.date.toISOString().slice(0, 10),
+    readingTime: getReadingTime(p.body)
   }));
 
   return new Response(JSON.stringify(index), {

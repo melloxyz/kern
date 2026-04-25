@@ -12,6 +12,12 @@ export const CATEGORIES = [
 
 export const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
+export function getReadingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / 200);
+  return `${minutes} min`;
+}
+
 export async function getPublishedPosts() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

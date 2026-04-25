@@ -4,7 +4,6 @@ date: 2026-02-05
 category: TRABALHO
 tags: [trabalho, remoto, futuro]
 excerpt: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus."
-readTime: "5 min"
 featured: false
 draft: false
 ---

@@ -4,7 +4,6 @@ date: 2026-04-25
 category: OPEN SOURCE
 tags: [Google, Gemma, on-device, privacidade, Hugging Face]
 excerpt: "Google DeepMind lança Gemma 4 como modelo multimodal otimizado para execução local. A combinação de licença permissiva e eficiência altera o custo de inferência para devs mobile e edge."
-readTime: "5 min"
 featured: true
 draft: false
 ---

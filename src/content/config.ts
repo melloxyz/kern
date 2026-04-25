@@ -8,7 +8,6 @@ const posts = defineCollection({
     category: z.enum(['MODELOS', 'SEGURANÇA', 'OPEN SOURCE', 'TRABALHO', 'NEGÓCIOS', 'POLÍTICA', 'PESQUISA']),
     tags: z.array(z.string()),
     excerpt: z.string(),
-    readTime: z.string().optional(),
     source: z.string().url().optional(),
     image: z.string().url().optional(),
     featured: z.boolean().default(false),

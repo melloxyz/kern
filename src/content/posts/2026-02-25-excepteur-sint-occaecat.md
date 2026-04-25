@@ -4,7 +4,6 @@ date: 2026-02-25
 category: POLÍTICA
 tags: [política, regulamentação, leis]
 excerpt: "Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus."
-readTime: "6 min"
 featured: false
 draft: false
 ---

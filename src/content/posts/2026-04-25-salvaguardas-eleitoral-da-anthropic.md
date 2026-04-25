@@ -4,7 +4,6 @@ date: 2026-04-25
 category: POLÍTICA
 tags: [Anthropic, eleições, compliance, desinformação, política]
 excerpt: "Anthropic atualiza políticas para mitigar uso de IA em desinformação eleitoral. Medidas voluntárias de labs podem antecipar regulação e afetar disponibilidade de features em regiões sensíveis."
-readTime: "4 min"
 draft: false
 ---
 
