@@ -12,7 +12,7 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
-  const siteUrl = "https://ruidoia.com.br";
+  const siteUrl = "https://kernia.com.br";
 
   const posts = (
     await getCollection("posts", (entry: Post) => !entry.data.draft)
@@ -39,7 +39,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>RuídoIA</title>
+    <title>KERN.IA</title>
     <link>${siteUrl}</link>
     <description>Inteligência artificial sem enrolação.</description>
     <language>pt-BR</language>

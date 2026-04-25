@@ -1,4 +1,4 @@
-# RuídoIA
+# KERN.IA
 
 Blog de inteligência artificial sem enrolação.  
 Stack: **Astro** + **Vercel** + **Git** + Markdown puro.
@@ -18,7 +18,7 @@ Sem painel admin. Sem CMS. Sem dependências extras.
 ## Estrutura do projeto
 
 ```
-ruidoia/
+kern-ia/
 ├── src/
 │   ├── content/
 │   │   └── posts/              ← AQUI ficam seus posts
@@ -125,7 +125,7 @@ A Vercel detecta o push e publica em ~30 segundos.
 
 ## Customizações rápidas
 
-**Mudar nome do site:** edite `src/layouts/Base.astro` — procura por `RUÍDO<span>IA</span>`
+**Mudar nome do site:** edite `src/layouts/Base.astro` — procure por `KERN<span>.IA</span>`
 
 **Mudar cores:** edite as variáveis CSS em `src/styles/global.css` na seção `:root`
 

@@ -3,5 +3,5 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   integrations: [mdx()],
-  site: 'https://ruidoia.com.br',
+  site: 'https://kernia.com.br',
 });
