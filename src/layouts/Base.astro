@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 
 interface Props {
   title?: string;
@@ -24,6 +25,33 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname;
+
+// Build global archive (months) so "Nesta página" can live in the layout
+const allPostsForArchive = await getCollection('posts', ({ data }) => !data.draft);
+
+const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+const archiveMap = new Map();
+for (const post of allPostsForArchive) {
+  const y = post.data.date.getFullYear();
+  const m = post.data.date.getMonth();
+  const key = `${y}-${String(m).padStart(2,'0')}`;
+  if (!archiveMap.has(key)) {
+    archiveMap.set(key, {
+      label: `${MONTHS_PT[m]} ${y}`,
+      year: y,
+      month: m + 1,
+      count: 0,
+      href: `/arquivo/${y}/${String(m+1).padStart(2,'0')}`,
+    });
+  }
+  archiveMap.get(key).count++;
+}
+const archive = [...archiveMap.values()];
+
+const pathMatch = Astro.url.pathname.match(/^\/arquivo\/(\d{4})\/(\d{2})/);
+const activeKey = pathMatch ? `${pathMatch[1]}-${pathMatch[2]}` : undefined;
 ---
 
 <!doctype html>
@@ -77,6 +105,41 @@ const currentPath = Astro.url.pathname;
   <main>
     <slot />
   </main>
+
+  <aside class="archive archive--floating">
+    <nav>
+      <p class="archive__title">Nesta página</p>
+      <ul class="archive__list">
+        {archive.map(entry => (
+          <li class={`archive__item ${activeKey === `${entry.year}-${String(entry.month).padStart(2,'0')}` ? 'archive__item--active' : ''}`}>
+            <a href={entry.href}>
+              {entry.label}
+              <span class="archive__count">{entry.count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+
+  <script>
+    (function () {
+      function updateArchiveTop() {
+        const nav = document.querySelector('.site-nav');
+        const archive = document.querySelector('.archive--floating');
+        if (!nav || !archive) return;
+        const navRect = nav.getBoundingClientRect();
+        const top = Math.max(navRect.bottom, 0) + 8;
+        archive.style.top = `${top}px`;
+      }
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', updateArchiveTop);
+        window.addEventListener('resize', updateArchiveTop);
+        window.addEventListener('scroll', updateArchiveTop, { passive: true });
+        requestAnimationFrame(updateArchiveTop);
+      }
+    })();
+  </script>
 
   <footer>
     <div class="container">

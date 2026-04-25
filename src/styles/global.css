@@ -160,6 +160,9 @@ h3 {
   background: var(--ink);
   border-bottom: 1px solid #333;
   overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
 .site-nav__list {
   display: flex;
@@ -277,7 +280,7 @@ h3 {
 }
 .card__read {
   font-family: var(--mono);
-  font-size: 13px; /* ler mais do card */
+  font-size: 15px; /* ler mais do card */
   color: var(--red);
   letter-spacing: 1px;
 }
@@ -494,6 +497,60 @@ h3 {
   font-family: var(--mono);
   font-size: 15px; /* texto legal do footer */
   color: var(--ink-light);
+}
+
+/* ── Archive (global floating) ── */
+.archive {
+  /* base styles for archive nav */
+}
+.archive--floating {
+  position: fixed;
+  right: 24px;
+  top: 120px;
+  width: 220px;
+  z-index: 20;
+}
+@media (max-width: 900px) {
+  .archive--floating {
+    display: none;
+  }
+}
+.archive__title {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.archive__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.archive__item a {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-mid);
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  transition: color 0.15s;
+  letter-spacing: 0.5px;
+}
+.archive__item a:hover {
+  color: var(--red);
+}
+.archive__item--active a {
+  color: var(--red);
+  font-weight: 700;
+}
+.archive__count {
+  float: right;
+  color: var(--ink-faint);
+  font-size: 12px;
 }
 
 /* ── Tag page ── */

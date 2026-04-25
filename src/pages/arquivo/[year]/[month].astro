@@ -39,26 +39,7 @@ function formatDate(date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-// Monta sidebar com todos os meses disponíveis
-const allPostsForSidebar = (await getCollection('posts', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const archiveMap = new Map();
-for (const post of allPostsForSidebar) {
-  const y = post.data.date.getFullYear();
-  const m = post.data.date.getMonth();
-  const key = `${y}-${String(m).padStart(2,'0')}`;
-  if (!archiveMap.has(key)) {
-    archiveMap.set(key, {
-      label: `${y} - ${MONTHS_PT[m]}`,
-      year: y, month: m + 1,
-      count: 0,
-      href: `/arquivo/${y}/${String(m+1).padStart(2,'0')}`,
-    });
-  }
-  archiveMap.get(key).count++;
-}
-const archive = [...archiveMap.values()];
+// archive agora vem do layout Base.astro
 const activeKey = `${year}-${String(month).padStart(2,'0')}`;
 ---
 
@@ -92,21 +73,7 @@ const activeKey = `${year}-${String(month).padStart(2,'0')}`;
         </div>
       </div>
 
-      <aside class="feed-layout__sidebar">
-        <nav class="archive">
-          <p class="archive__title">Nesta página</p>
-          <ul class="archive__list">
-            {archive.map(entry => (
-              <li class={`archive__item ${activeKey === `${entry.year}-${String(entry.month).padStart(2,'0')}` ? 'archive__item--active' : ''}`}>
-                <a href={entry.href}>
-                  {entry.label}
-                  <span class="archive__count">{entry.count}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
+      <!-- aside removido: o archive global é gerado pelo layout -->
 
     </div>
   </div>
