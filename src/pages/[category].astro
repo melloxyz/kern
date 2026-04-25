@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const CATEGORY_ROUTES = [
+    { slug: 'modelos', category: 'MODELOS', label: 'Modelos' },
+    { slug: 'seguranca', category: 'SEGURANÇA', label: 'Segurança' },
+    { slug: 'open-source', category: 'OPEN SOURCE', label: 'Open Source' },
+    { slug: 'trabalho', category: 'TRABALHO', label: 'Trabalho' },
+    { slug: 'negocios', category: 'NEGÓCIOS', label: 'Negócios' },
+    { slug: 'politica', category: 'POLÍTICA', label: 'Política' },
+    { slug: 'pesquisa', category: 'PESQUISA', label: 'Pesquisa' },
+  ];
+
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+
+  return CATEGORY_ROUTES.map(route => ({
+    params: { category: route.slug },
+    props: {
+      label: route.label,
+      posts: posts
+        .filter(post => post.data.category === route.category)
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    },
+  }));
+}
+
+const { label, posts } = Astro.props;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+---
+
+<Base title={label} description={`Posts em ${label} no RuídoIA`}>
+  <div class="feed">
+    <div class="tag-header">
+      <a href="/" class="post__back">← voltar ao feed</a>
+      <h1>
+        {label}
+        <small style="font-weight:400;font-size:0.6em;color:var(--ink-light);">
+          ({posts.length} post{posts.length !== 1 ? 's' : ''})
+        </small>
+      </h1>
+    </div>
+
+    {posts.length === 0 ? (
+      <p class="search-results__empty">Ainda não há notícias nesta categoria.</p>
+    ) : (
+      <div>
+        {posts.map(post => (
+          <a href={`/posts/${post.slug}`} class="post-row">
+            <div>
+              <div class="post-row__meta">
+                <span class="post-row__category">{post.data.category}</span>
+                <span class="post-row__date">· {formatDate(post.data.date)}</span>
+              </div>
+              <h2 class="post-row__title">{post.data.title}</h2>
+              <p class="post-row__excerpt">{post.data.excerpt}</p>
+            </div>
+            <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>

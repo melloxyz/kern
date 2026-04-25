@@ -40,7 +40,7 @@ function formatDate(date) {
     </div>
     <div>
       {posts.map(post => (
-        <a href={`/posts/${post.slug}`} class={`post-row ${post.data.image ? 'post-row--has-image' : ''}`}>
+        <a href={`/posts/${post.slug}`} class="post-row">
           <div>
             <div class="post-row__meta">
               <span class="post-row__category">{post.data.category}</span>
@@ -49,10 +49,7 @@ function formatDate(date) {
             <h2 class="post-row__title">{post.data.title}</h2>
             <p class="post-row__excerpt">{post.data.excerpt}</p>
           </div>
-          {post.data.image
-            ? <img src={post.data.image} alt={post.data.title} class="post-row__thumb" loading="lazy" />
-            : <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
-          }
+          <span class="post-row__time">{post.data.readTime ?? '5 min'}</span>
         </a>
       ))}
     </div>
