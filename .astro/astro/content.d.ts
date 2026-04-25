@@ -152,6 +152,69 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"2026-01-10-lorem-ipsum-modelos.md": {
+	id: "2026-01-10-lorem-ipsum-modelos.md";
+  slug: "2026-01-10-lorem-ipsum-modelos";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-01-15-sed-do-eiusmod.md": {
+	id: "2026-01-15-sed-do-eiusmod.md";
+  slug: "2026-01-15-sed-do-eiusmod";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-01-22-ut-enim-ad.md": {
+	id: "2026-01-22-ut-enim-ad.md";
+  slug: "2026-01-22-ut-enim-ad";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-02-05-duis-aute-irure.md": {
+	id: "2026-02-05-duis-aute-irure.md";
+  slug: "2026-02-05-duis-aute-irure";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-02-18-velit-esse-cillum.md": {
+	id: "2026-02-18-velit-esse-cillum.md";
+  slug: "2026-02-18-velit-esse-cillum";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-02-25-excepteur-sint-occaecat.md": {
+	id: "2026-02-25-excepteur-sint-occaecat.md";
+  slug: "2026-02-25-excepteur-sint-occaecat";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-03-08-sunt-in-culpa.md": {
+	id: "2026-03-08-sunt-in-culpa.md";
+  slug: "2026-03-08-sunt-in-culpa";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-03-14-nemo-enim-ipsam.md": {
+	id: "2026-03-14-nemo-enim-ipsam.md";
+  slug: "2026-03-14-nemo-enim-ipsam";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-03-29-neque-porro-quisquam.md": {
+	id: "2026-03-29-neque-porro-quisquam.md";
+  slug: "2026-03-29-neque-porro-quisquam";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "2026-04-22-deepseek-v4.md": {
 	id: "2026-04-22-deepseek-v4.md";
   slug: "2026-04-22-deepseek-v4";
