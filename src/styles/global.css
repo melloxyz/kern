@@ -192,8 +192,9 @@ h3 {
   grid-template-columns: 1fr 1fr;
   gap: 1px;
   background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 1px;
+  border: 2px solid var(--border);
+  margin-bottom: 2px;
+  margin-top: 10px;
 }
 @media (max-width: 600px) {
   .feed__featured {
