@@ -102,7 +102,7 @@ for (const post of [...allPosts].sort((a, b) => b.data.date.getTime() - a.data.d
   
   if (!archiveMap.has(key)) {
     archiveMap.set(key, {
-      label: `${MONTHS_PT[Number(m) - 1]} ${y}`,
+      label: `${y} - ${MONTHS_PT[Number(m) - 1]}`,
       year: y, month: m, count: 0,
       href: activeCatSlug ? `/arquivo/${y}/${m}/${activeCatSlug}` : `/arquivo/${y}/${m}`,
       key
