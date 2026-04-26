@@ -1,10 +1,15 @@
 <div align="center">
-██╗ ██╗███████╗██████╗ ███╗ ██╗
-██║ ██╔╝██╔════╝██╔══██╗████╗ ██║
-█████╔╝ █████╗ ██████╔╝██╔██╗ ██║
-██╔═██╗ ██╔══╝ ██╔══██╗██║╚██╗██║
-██║ ██╗███████╗██║ ██║██║ ╚████║██╗
-╚═╝ ╚═╝╚══════╝╚═╝ ╚═╝╚═╝ ╚═══╝╚═╝
+
+```
+██╗  ██╗███████╗██████╗ ███╗   ██╗
+██║ ██╔╝██╔════╝██╔══██╗████╗  ██║
+█████╔╝ █████╗  ██████╔╝██╔██╗ ██║
+██╔═██╗ ██╔══╝  ██╔══██╗██║╚██╗██║
+██║  ██╗███████╗██║  ██║██║ ╚████║██╗
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝
+```
+
+</div>
 
 ### KERN. — Inteligência Artificial sem ruído.
 
@@ -12,8 +17,6 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue?logo=typescript)
 ![License](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey)
 ![Privacy](https://img.shields.io/badge/Privacy-Shield-green)
-
-</div>
 
 O **KERN.** é um blog editorial minimalista focado em curadoria de notícias sobre inteligência artificial. Em um mundo saturado de informação, o KERN. filtra o sinal do ruído, entregando apenas o que é tecnicamente relevante e estrategicamente vital.
 
