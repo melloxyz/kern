@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 import ShareButtons from '../../components/ShareButtons.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import { getPublishedPosts, getRelatedPosts } from '../../utils/posts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -14,6 +16,9 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(post);
 const readingTime = remarkPluginFrontmatter?.readingTime;
+
+const allPosts = await getPublishedPosts();
+const relatedPosts = getRelatedPosts(post, allPosts);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', {
@@ -51,12 +56,12 @@ function formatDate(date: Date) {
         <Content />
       </div>
 
-      <ShareButtons title={post.data.title} url={Astro.url.href} />
-
       {post.data.source && (
         <div class="post__source">
           <span class="post__source-label">Fonte:</span>
-          <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post__source-link">{new URL(post.data.source).hostname.replace('www.', '')}</a>
+          <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post__source-link">
+            {new URL(post.data.source).hostname.replace('www.', '')}
+          </a>
         </div>
       )}
 
@@ -65,6 +70,10 @@ function formatDate(date: Date) {
           <a href={`/tag/${tag}`} class="post__tag">#{tag}</a>
         ))}
       </div>
+
+      <ShareButtons title={post.data.title} url={Astro.url.href} />
+      
+      <RelatedPosts posts={relatedPosts} />
 
     </article>
   </div>

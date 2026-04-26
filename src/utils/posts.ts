@@ -153,3 +153,27 @@ export function getArchiveLinks(
     activeYear ? entry.year === activeYear : true,
   );
 }
+
+export function getRelatedPosts(
+  currentPost: CollectionEntry<"posts">,
+  allPosts: CollectionEntry<"posts">[],
+  limit = 4,
+) {
+  const related = allPosts
+    .filter((p) => p.id !== currentPost.id)
+    .map((p) => {
+      let score = 0;
+      if (p.data.category === currentPost.data.category) score += 2;
+      const commonTags = p.data.tags.filter((t) =>
+        currentPost.data.tags.includes(t),
+      );
+      score += commonTags.length;
+      return { post: p, score };
+    })
+    .filter((p) => p.score > 0)
+    .sort((a, b) => b.score - a.score || b.post.data.date.getTime() - a.post.data.date.getTime())
+    .slice(0, limit)
+    .map((p) => p.post);
+
+  return related;
+}
