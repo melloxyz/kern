@@ -9,7 +9,7 @@
 ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝
 </pre>
 
-<h3>KERN. — Inteligência Artificial sem ruído.</h3>
+<h3>KERN. — Sem Ads, Sem Paywall, Sem Enrolação.</h3>
 
 ![Astro Version](https://img.shields.io/badge/Astro-6.1.9-blue?logo=astro)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue?logo=typescript)
@@ -22,7 +22,7 @@ O **KERN.** é um blog editorial minimalista focado em curadoria de notícias so
 
 ---
 
-## 🚀 Tecnologias
+## Tecnologias
 
 ![Astro](https://img.shields.io/badge/astro-%232C2231.svg?style=for-the-badge&logo=astro&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -33,21 +33,21 @@ O **KERN.** é um blog editorial minimalista focado em curadoria de notícias so
 
 ---
 
-## ✨ Recursos de Elite
+## Recursos Atuais
 
-### 🔒 Privacidade & Segurança
+### Privacidade & Segurança
 
 - **Zero Trackers:** Sem Google Analytics, sem pixels, sem cookies de rastreio.
 - **Fontes Locais:** Todas as fontes (Source Serif 4) são hospedadas no próprio servidor para evitar vazamento de IP via Google Fonts.
 - **Security Headers:** Implementação robusta de Content Security Policy (CSP) e Referrer Policy.
 
-### ⚡ Performance Extrema
+### Performance Extrema
 
 - **100/100 Lighthouse:** Código otimizado para Core Web Vitals.
 - **View Transitions:** Navegação fluida sem recarregamento de página via Astro ClientRouter.
 - **Static First:** Geração estática total para entrega via edge.
 
-### 🔍 SEO & Social
+### SEO & Social
 
 - **JSON-LD Automático:** Dados estruturados do tipo `BlogPosting` em todos os artigos.
 - **Metadados Sociais:** Tags Open Graph e Twitter Cards avançadas para previews ricas.
@@ -55,7 +55,7 @@ O **KERN.** é um blog editorial minimalista focado em curadoria de notícias so
 
 ---
 
-## 🏗️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ```text
 kern/
@@ -75,7 +75,7 @@ kern/
 
 ---
 
-## 🛠️ Desenvolvimento
+## Desenvolvimento
 
 ### Instalação
 
@@ -96,7 +96,7 @@ npm install
 
 ---
 
-## ✍️ Fluxo Editorial (CLI)
+## Fluxo Editorial (CLI)
 
 Para manter a padronização e agilidade, utilize nosso script de scaffolding:
 
@@ -115,9 +115,9 @@ O arquivo será gerado automaticamente em `src/content/posts/` com o frontmatter
 
 ---
 
-## 📜 Governança e Contribuição
+## Governança e Contribuição
 
-- **Licença:** Este projeto é distribuído sob a licença **Creative Commons Atribuição-NãoComercial 4.0 Internacional (CC BY-NC 4.0)**.
+- **Licença:** Este projeto é distribuído sob a licença **Creative Commons Atribuição Não Comercial 4.0 Internacional (CC BY-NC 4.0)**.
 - **Contribuições:** Bugs e sugestões são bem-vindos! Por favor, leia nosso guia de [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ---
