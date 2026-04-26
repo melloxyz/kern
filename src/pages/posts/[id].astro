@@ -65,10 +65,13 @@ function formatDate(date: Date) {
         </div>
       )}
 
-      <div class="post__tags">
-        {post.data.tags.map(tag => (
-          <a href={`/tag/${tag}`} class="post__tag">#{tag}</a>
-        ))}
+      <div class="post__tags-section">
+        <span class="post__tags-label">Tags</span>
+        <div class="post__tags">
+          {post.data.tags.map(tag => (
+            <a href={`/tag/${tag}`} class="post__tag">#{tag}</a>
+          ))}
+        </div>
       </div>
 
       <ShareButtons title={post.data.title} url={Astro.url.href} />
