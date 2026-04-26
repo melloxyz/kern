@@ -4,7 +4,7 @@ date: 2026-04-23
 category: SEGURANÇA
 tags: [Anthropic, segurança, cibersegurança]
 excerpt: "Claude Mythos Preview foi limitado a um grupo seleto após testes internos mostrarem que o modelo encadeia exploits de forma autônoma — descobrindo falhas com sucesso acima de 80%. Isso não é bug. É feature que a empresa decidiu que o mundo não está pronto para receber."
-featured: true
+featured: false
 draft: false
 ---
 
