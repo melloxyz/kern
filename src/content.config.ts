@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const posts = defineCollection({
@@ -9,8 +10,8 @@ const posts = defineCollection({
     category: z.enum(['MODELOS', 'SEGURANÇA', 'OPEN SOURCE', 'TRABALHO', 'NEGÓCIOS', 'POLÍTICA', 'PESQUISA']),
     tags: z.array(z.string()),
     excerpt: z.string(),
-    source: z.string().url().optional(),
-    image: z.string().url().optional(),
+    source: z.url().optional(),
+    image: z.url().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

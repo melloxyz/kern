@@ -43,6 +43,12 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="canonical" href={canonicalURL} />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="KERN"
+    href={new URL("rss.xml", Astro.site)}
+  />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content={ogType} />
