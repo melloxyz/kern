@@ -20,68 +20,317 @@ import Base from '../layouts/Base.astro';
       </header>
 
       <div class="post__body">
-        <section style="margin-bottom: 60px;">
-          <p style="font-size: 1.2rem; line-height: 1.7; color: var(--ink);">
-            <strong>KERN</strong> é um laboratório editorial independente dedicado à cobertura técnica e analítica do ecossistema de inteligência artificial. Nossa missão é extrair o <em>núcleo</em> (kernel) das transformações tecnológicas, descartando o ruído mercadológico para entregar contexto acionável.
+        <section class="kern-definition">
+          <h2 class="kern-definition__title">Kern</h2>
+          <p class="kern-definition__type">[substantivo]</p>
+          
+          <ol class="kern-definition__list">
+            <li>
+              <span class="num">1.</span>
+              <span>Do alemão: núcleo, cerne, essência; aquilo que está no centro de algo.</span>
+            </li>
+            <li>
+              <span class="num">2.</span>
+              <span>Em tipografia: ajuste fino entre letras para dar precisão, equilíbrio e clareza à leitura.</span>
+            </li>
+            <li>
+              <span class="num">3.</span>
+              <span>Em sentido editorial: o que permanece quando o ruído é deixado de lado.</span>
+            </li>
+          </ol>
+
+          <p class="kern-definition__footer">
+            Em <strong>KERN</strong>, o nome traduz essa proposta com exatidão: chegar ao essencial e apresentá-lo com clareza.
           </p>
+          <p class="kern-definition__tagline">Menos hype. Mais contexto.</p>
         </section>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
-          <div style="background: var(--bg-card); padding: 32px; border: 1px solid var(--border); border-radius: 8px;">
-            <h3 style="margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--red);">O Manifesto</h3>
-            <ul style="list-style: none; padding: 0; margin: 20px 0 0;">
-              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <div class="cards-grid">
+          <!-- Manifesto Card -->
+          <div class="info-card">
+            <h3 class="info-card__title">O Manifesto</h3>
+            <ul class="info-card__list">
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 122.88 122.88" fill="currentColor"><path d="M61.44,0A61.31,61.31,0,1,1,38,4.66,61.29,61.29,0,0,1,61.44,0ZM96.13,55.62A73.43,73.43,0,0,0,88.54,55a14.21,14.21,0,0,0-2.76.14.59.59,0,0,0-.38.61.75.75,0,0,0,.44.7,17,17,0,0,0,2.79.83,37.3,37.3,0,0,1,3.85,1.14A9.31,9.31,0,0,1,95.19,60a4.83,4.83,0,0,1,1.59,2.49,16,16,0,0,1,.39,4q0,5.14-2.45,7.34T87.36,76a35,35,0,0,1-5-.37,37.23,37.23,0,0,1-4-.75l-1.44-.37.37-7.34a61.8,61.8,0,0,0,9.29.91q1.92,0,1.92-1a.63.63,0,0,0-.44-.6,17.51,17.51,0,0,0-2.4-.52q-5.19-.9-7.06-2.84t-1.86-6.32q0-5.61,2.4-7.68t7.4-2.07a51.74,51.74,0,0,1,8.26.78l1.55.29-.22,7.47ZM62.7,75.41H51.85V47.61H62.33q6.4,0,9.21,3.24T74.36,61.2q0,7.13-2.7,10.66t-9,3.55Zm3-13.73q0-3.74-.69-5c-.45-.83-1.47-1.24-3.05-1.24H60.44V67.57H62a3.56,3.56,0,0,0,2.85-1.08c.59-.72.89-2.32.89-4.81Zm-40,13.73,5.48-27.8h13l5.59,27.8H41.11l-.7-3.19H34.75l-.6,3.19ZM37.26,55.17l-1.4,9.7h3.66l-1.33-9.7Zm64.93-23.63-6.39,6.4a58.74,58.74,0,0,0-9.26-.86,24.42,24.42,0,0,0-6,.71L94.83,23.48a50.62,50.62,0,0,0-52.7-8.77A50.49,50.49,0,0,0,23.52,94.79l9.38-9.38h1.25v0c2.42,0,4.59,0,7,0h5.18l1.61.43L31.58,102.16a50.51,50.51,0,0,0,70.61-70.62Z"/></svg>
+                </div>
                 <span><strong>Sem ads:</strong> Sua atenção é o bem mais valioso; não a vendemos para terceiros.</span>
               </li>
-              <li style="margin-bottom: 16px; display: flex; align-items: flex-start; gap: 12px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M7 11V7a5 5 0 0 1 10 0v4"></path><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M12 16v3"></path></svg>
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14,6a7.17,7.17,0,0,0-1,.08A4.49,4.49,0,0,0,4,6.5V7A2,2,0,0,0,2,9v9a1.94,1.94,0,0,0,2,2H8.73A8,8,0,1,0,14,6ZM6,6.5a2.51,2.51,0,0,1,5-.24V7H6ZM14,20a6,6,0,1,1,6-6A6,6,0,0,1,14,20Zm-1.5-8v1h4a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H15v1H13V18H10.5V16h5V15h-4a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H13V9h2v1h2.5v2Z"></path></svg>
+                </div>
                 <span><strong>Sem paywalls:</strong> O conhecimento técnico deve ser livre. Acreditamos na web aberta.</span>
               </li>
-              <li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 12px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                <span><strong>Sinal Puro:</strong> Valorizamos o rigor técnico. Se não há nada novo a dizer, ficamos em silêncio.</span>
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.1929 20.542C17.4797 21.0139 18.0999 21.1704 18.5438 20.8418C19.7886 19.9206 20.8279 18.7446 21.5901 17.388C22.5159 15.74 23.0015 13.8813 23 11.9911C22.9985 10.1008 22.5099 8.24291 21.5813 6.59646C20.817 5.24112 19.7757 4.06675 18.5295 3.14756C18.0851 2.81973 17.4651 2.97722 17.179 3.44961C16.8929 3.92199 17.0462 4.53563 17.484 4.87241C18.4384 5.60674 19.2384 6.52748 19.8333 7.5823C20.5924 8.92836 20.9919 10.4473 20.9931 11.9927C20.9944 13.5381 20.5974 15.0577 19.8404 16.405C19.2472 17.4608 18.4487 18.3828 17.4955 19.1187C17.0583 19.4562 16.906 20.07 17.1929 20.542Z"></path> <path d="M15.1784 17.0884C15.471 17.5568 16.0939 17.7048 16.5159 17.3485C17.1624 16.8026 17.7068 16.1422 18.1201 15.3976C18.6959 14.3605 18.9987 13.1941 19 12.0078C19.0013 10.8216 18.7012 9.6545 18.1277 8.61609C17.716 7.87056 17.1732 7.20893 16.5279 6.66161C16.1067 6.30437 15.4834 6.45097 15.1898 6.91872C14.8961 7.38648 15.0461 7.99795 15.4461 8.37868C15.8144 8.7291 16.1285 9.13501 16.3761 9.58341C16.7856 10.325 16.9999 11.1585 16.999 12.0056C16.998 12.8527 16.7818 13.6857 16.3706 14.4264C16.122 14.8742 15.807 15.2794 15.438 15.629C15.0371 16.0088 14.8858 16.62 15.1784 17.0884Z"></path> <path d="M6.80715 3.45801C6.52025 2.98608 5.90008 2.82959 5.45615 3.15815C4.21145 4.07935 3.1721 5.25541 2.40993 6.61198C1.48406 8.25993 0.998473 10.1187 1 12.0089C1.00153 13.8991 1.49013 15.7571 2.41867 17.4035C3.18303 18.7589 4.22428 19.9332 5.47048 20.8524C5.91494 21.1802 6.53486 21.0228 6.82099 20.5504C7.10711 20.078 6.95376 19.4643 6.51604 19.1276C5.56163 18.3932 4.76161 17.4725 4.16673 16.4177C3.40759 15.0716 3.00814 13.5526 3.00689 12.0073C3.00564 10.4619 3.40263 8.94228 4.15958 7.59499C4.75275 6.53921 5.55128 5.61717 6.5045 4.8813C6.94168 4.54381 7.09404 3.92993 6.80715 3.45801Z"></path> <path d="M8.82162 6.91159C8.52904 6.44317 7.90607 6.29518 7.48409 6.65147C6.83758 7.19734 6.29322 7.85776 5.87985 8.60237C5.30409 9.63949 5.00133 10.8059 5.00001 11.9921C4.99868 13.1784 5.29882 14.3455 5.87226 15.3839C6.28396 16.1294 6.82683 16.791 7.47211 17.3384C7.8933 17.6956 8.51659 17.549 8.81023 17.0812C9.10386 16.6135 8.95393 16.002 8.55385 15.6213C8.18562 15.2709 7.87155 14.865 7.62393 14.4166C7.21442 13.675 7.00007 12.8415 7.00102 11.9944C7.00197 11.1473 7.21818 10.3143 7.62936 9.57361C7.87798 9.12576 8.19296 8.72056 8.56198 8.37096C8.96291 7.99113 9.11421 7.38 8.82162 6.91159Z"></path> <path d="M15 12C15 13.6568 13.6569 15 12 15C10.3431 15 9 13.6568 9 12C9 10.3431 10.3431 8.99998 12 8.99998C13.6569 8.99998 15 10.3431 15 12ZM10.9895 12C10.9895 12.5581 11.4419 13.0105 12 13.0105C12.5581 13.0105 13.0105 12.5581 13.0105 12C13.0105 11.4419 12.5581 10.9894 12 10.9894C11.4419 10.9894 10.9895 11.4419 10.9895 12Z"></path></svg>
+                </div>
+                <span><strong>Sem Enrolação:</strong> Se não há nada novo a dizer, ficamos em silêncio. Valorizamos o rigor.</span>
               </li>
             </ul>
           </div>
 
-          <div style="display: flex; flex-direction: column; justify-content: center;">
-            <h3 style="margin-top: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-light);">Curadoria Humana</h3>
-            <p style="margin-top: 12px;">
-              Diferente de agregadores automatizados, cada peça no <strong>KERN</strong> passa por uma curadoria humana técnica. Analisamos repositórios, papers e implementações reais antes de publicar qualquer conclusão.
-            </p>
-            <p>
-              O ponto (.) no nosso nome representa o fim do ruído. É a precisão absoluta que buscamos em cada análise.
-            </p>
+          <!-- Curadoria Card -->
+          <div class="info-card">
+            <h3 class="info-card__title">Curadoria</h3>
+            <ul class="info-card__list">
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 512 512" fill="currentColor"><g><path d="M147.57,320.188c-0.078-0.797-0.328-1.531-0.328-2.328v-6.828c0-3.25,0.531-6.453,1.594-9.5 c0,0,17.016-22.781,25.063-49.547c-8.813-18.594-16.813-41.734-16.813-64.672c0-5.328,0.391-10.484,0.938-15.563 c-11.484-12.031-27-18.844-44.141-18.844c-35.391,0-64.109,28.875-64.109,73.75c0,35.906,29.219,74.875,29.219,74.875 c1.031,3.047,1.563,6.25,1.563,9.5v6.828c0,8.516-4.969,16.266-12.719,19.813l-46.391,18.953 C10.664,361.594,2.992,371.5,0.852,383.156l-0.797,10.203c-0.406,5.313,1.406,10.547,5.031,14.438 c3.609,3.922,8.688,6.125,14.016,6.125H94.93l3.109-39.953l0.203-1.078c3.797-20.953,17.641-38.766,36.984-47.672L147.57,320.188z"></path> <path d="M511.148,383.156c-2.125-11.656-9.797-21.563-20.578-26.531l-46.422-18.953 c-7.75-3.547-12.688-11.297-12.688-19.813v-6.828c0-3.25,0.516-6.453,1.578-9.5c0,0,29.203-38.969,29.203-74.875 c0-44.875-28.703-73.75-64.156-73.75c-17.109,0-32.625,6.813-44.141,18.875c0.563,5.063,0.953,10.203,0.953,15.531 c0,22.922-7.984,46.063-16.781,64.656c8.031,26.766,25.078,49.563,25.078,49.563c1.031,3.047,1.578,6.25,1.578,9.5v6.828 c0,0.797-0.266,1.531-0.344,2.328l11.5,4.688c20.156,9.219,34,27.031,37.844,47.984l0.188,1.094l3.094,39.969h75.859 c5.328,0,10.406-2.203,14-6.125c3.625-3.891,5.438-9.125,5.031-14.438L511.148,383.156z"></path> <path d="M367.867,344.609l-56.156-22.953c-9.375-4.313-15.359-13.688-15.359-23.969v-8.281 c0-3.906,0.625-7.797,1.922-11.5c0,0,35.313-47.125,35.313-90.594c0-54.313-34.734-89.234-77.594-89.234 c-42.844,0-77.594,34.922-77.594,89.234c0,43.469,35.344,90.594,35.344,90.594c1.266,3.703,1.922,7.594,1.922,11.5v8.281 c0,10.281-6.031,19.656-15.391,23.969l-56.156,22.953c-13.047,5.984-22.344,17.984-24.906,32.109l-2.891,37.203h139.672h139.672 l-2.859-37.203C390.211,362.594,380.914,350.594,367.867,344.609z"></path> </g></svg>
+                </div>
+                <span><strong>Especialistas:</strong> Notícias filtradas por critérios técnicos rigorosos, eliminando ruído e priorizando relevância para profissionais de tecnologia.</span>
+              </li>
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 64 64" fill="currentColor"><path d="M17.406,25.591c0,0 2.059,0.83 1.986,2.891c-0.072,2.062 -6.66,2.957 -6.66,11.094c0,8.137 9.096,14.532 19.217,14.532c10.12,0 23.872,-5.932 23.872,-17.83c0,-19.976 -1.513,-6.134 -17.276,-6.134c-5.235,0 -6.169,-1.787 -5.342,-2.806c3.91,-4.811 5.342,-17.446 -7.42,-17.446c-8.327,0.173 -10.338,6.946 -10.325,8.587c0.008,1.153 -1.204,1.543 -7.308,1.308c-1.536,5.619 9.256,5.804 9.256,5.804Zm3.77,-10.366c1.104,0 2,0.897 2,2c0,1.104 -0.896,2 -2,2c-1.103,0 -2,-0.896 -2,-2c0,-1.103 0.897,-2 2,-2Z"></path></svg>
+                </div>
+                <span><strong>Autonomia:</strong> Temos liberdade total para criticar ou elogiar qualquer tecnologia.</span>
+              </li>
+              <li>
+                <div class="icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <span><strong>Tendências:</strong> Destaque para conceitos e ferramentas com comprovada aplicabilidade contínua, ignorando ciclos de hype de curto prazo.</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <section style="border-top: 1px solid var(--border); padding-top: 40px; margin-top: 60px;">
-          <h2>Arquitetura Técnica</h2>
-          <p>
+        <section class="tech-section">
+          <h2 class="tech-section__title">Arquitetura Técnica</h2>
+          <p class="tech-section__text">
             O <strong>KERN</strong> é construído com foco em velocidade e privacidade. Utilizamos a stack <strong>Astro</strong> para gerar um site 100% estático, garantindo performance máxima em qualquer dispositivo.
           </p>
-          <ul style="margin-top: 24px;">
+          <ul class="tech-section__list">
             <li><strong>Código Aberto:</strong> O motor do site é transparente e auditável no <a href="https://github.com/melloxyz/kern-ia" target="_blank" rel="noopener">GitHub</a>.</li>
             <li><strong>Privacidade por Design:</strong> Não usamos cookies de rastreamento, Google Analytics ou qualquer ferramenta que comprometa seu anonimato.</li>
             <li><strong>Portabilidade:</strong> Todo conteúdo é escrito em Markdown, garantindo que o conhecimento permaneça legível por décadas.</li>
           </ul>
         </section>
 
-        <footer style="margin-top: 80px; padding: 40px; background: var(--ink); color: #fff; border-radius: 8px; text-align: center;">
-          <p style="font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 16px;">Sinal acima do ruído</p>
-          <h2 style="color: #fff; border: none; margin: 0 0 20px; font-size: 1.5rem;">Acompanhe o fluxo.</h2>
-          <a href="/rss.xml" style="display: inline-block; padding: 12px 24px; background: #fff; color: #000; font-weight: 700; text-decoration: none; border-radius: 4px; font-family: var(--ui);">Assinar Feed RSS</a>
-        </footer>
+        <!-- RSS SECTION -->
+        <section class="rss-section">
+          <div class="rss-section__content">
+            <p class="rss-section__label">Conecte-se ao fluxo</p>
+            <h2 class="rss-section__title">Acompanhe o sinal puro.</h2>
+            <p class="rss-section__description">
+              Receba nossas atualizações diretamente no seu agregador favorito. Sem algoritmos, sem spam e <strong>totalmente gratuito</strong>.
+            </p>
+            
+            <div class="rss-section__actions">
+              <a href="/rss.xml" class="rss-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+                </svg>
+                Assinar via RSS
+              </a>
+              <p class="rss-section__meta">XML / FEED / OPEN WEB</p>
+            </div>
+          </div>
+        </section>
       </div>
     </article>
   </div>
 </Base>
 
 <style>
+  /* KERN DEFINITION */
+  .kern-definition {
+    margin-bottom: 60px;
+    padding: 40px;
+    background: var(--bg-card);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+  }
+  .kern-definition__title {
+    margin: 0 0 16px;
+    font-size: 1.8rem;
+    border: none;
+    padding: 0;
+  }
+  .kern-definition__type {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+  }
+  .kern-definition__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .kern-definition__list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .kern-definition__list .num {
+    font-weight: 700;
+    color: var(--red);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+  .kern-definition__footer {
+    margin-top: 32px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .kern-definition__tagline {
+    font-weight: 700;
+    font-family: var(--ui);
+    color: var(--red);
+    margin-top: 12px;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  .info-card {
+    background: var(--bg-card);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .info-card__title {
+    margin-top: 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--red);
+  }
+  .info-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+  }
+  .info-card__list li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start; /* Alinhamento ao topo */
+    gap: 16px; /* Espaço maior entre ícone e texto */
+  }
+  .info-card__list li:last-child {
+    margin-bottom: 0;
+  }
+  .info-card__list .icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 5px; /* Ajuste fino para alinhar com a primeira linha do texto */
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .info-card__list span {
+    line-height: 1.5;
+  }
+
+  /* TECH SECTION */
+  .tech-section {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    margin-top: 60px;
+  }
+  .tech-section__title {
+    margin-bottom: 16px;
+  }
+  .tech-section__list {
+    margin-top: 24px;
+  }
+
+  /* RSS SECTION */
+  .rss-section {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .rss-section__content {
+    max-width: 600px;
+  }
+  .rss-section__label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .rss-section__title {
+    color: var(--ink);
+    border: none;
+    margin: 0 0 12px;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  .rss-section__description {
+    color: var(--ink-mid);
+    font-size: 1rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .rss-section__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .rss-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: var(--ink);
+    color: var(--bg);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: var(--ui);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  .rss-button:hover {
+    transform: translateY(-2px);
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.2);
+  }
+  .rss-button:active {
+    transform: translateY(-1px);
+  }
+  .rss-section__meta {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
   @media (max-width: 768px) {
-    div[style*="grid-template-columns: 1fr 1fr"] {
-      grid-template-columns: 1fr !important;
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .rss-section {
+      padding: 40px 24px;
+    }
+    .rss-section__title {
+      font-size: 1.8rem;
     }
   }
 </style>
