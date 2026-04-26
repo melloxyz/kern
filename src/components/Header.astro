@@ -81,7 +81,16 @@
     if (postIndex.length) return;
     try {
       const res = await fetch('/search-index.json');
-      if (res.ok) postIndex = await res.json();
+      if (res.ok) {
+        const raw = await res.json();
+        postIndex = raw.map((p: any) => ({
+          ...p,
+          nTitle:   normalize(p.title),
+          nExcerpt: normalize(p.excerpt),
+          nContent: normalize(p.content || ""),
+          nTags:    (p.tags || []).map((t: string) => normalize(t))
+        }));
+      }
     } catch {}
   }
 
@@ -118,9 +127,19 @@
     }
     
     const q = normalize(query);
-    currentHits = postIndex.filter(p =>
-      normalize(p.title).includes(q) || normalize(p.excerpt).includes(q)
-    ).slice(0, 6);
+    
+    currentHits = postIndex
+      .map(p => {
+        let score = 0;
+        if (p.nTitle.includes(q))   score += 10;
+        if (p.nTags.some((t: string) => t.includes(q))) score += 5;
+        if (p.nExcerpt.includes(q)) score += 1;
+        if (p.nContent.includes(q)) score += 1;
+        return { ...p, score };
+      })
+      .filter(p => p.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
     
     selectedIndex = -1;
 

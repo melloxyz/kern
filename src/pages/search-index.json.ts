@@ -9,6 +9,8 @@ export const GET = async () => {
     title:    p.data.title,
     excerpt:  p.data.excerpt,
     category: p.data.category,
+    tags:     p.data.tags,
+    content:  p.body,
     date:     p.data.date.toISOString().slice(0, 10),
     readingTime: getReadingTime(p.body)
   }));
