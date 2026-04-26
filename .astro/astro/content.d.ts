@@ -193,6 +193,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"2026-04-25-google-guerra-ia-anthropic.md": {
+	id: "2026-04-25-google-guerra-ia-anthropic.md";
+  slug: "2026-04-25-google-guerra-ia-anthropic";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "2026-04-25-gpt55-agentes-nativos.md": {
 	id: "2026-04-25-gpt55-agentes-nativos.md";
   slug: "2026-04-25-gpt55-agentes-nativos";
@@ -200,9 +207,30 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"2026-04-25-kvcached-gpu-llm-eficiencia.md": {
+	id: "2026-04-25-kvcached-gpu-llm-eficiencia.md";
+  slug: "2026-04-25-kvcached-gpu-llm-eficiencia";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "2026-04-25-salvaguardas-eleitoral-da-anthropic.md": {
 	id: "2026-04-25-salvaguardas-eleitoral-da-anthropic.md";
   slug: "2026-04-25-salvaguardas-eleitoral-da-anthropic";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-25-xai-grok-voz-atendimento.md": {
+	id: "2026-04-25-xai-grok-voz-atendimento.md";
+  slug: "2026-04-25-xai-grok-voz-atendimento";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-agentes-ia-metricas-mundo-real.md": {
+	id: "2026-04-26-agentes-ia-metricas-mundo-real.md";
+  slug: "2026-04-26-agentes-ia-metricas-mundo-real";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
@@ -224,6 +252,13 @@ declare module 'astro:content' {
 "2026-04-26-perda-habilidade-ocidente-desaprende-codificar.md": {
 	id: "2026-04-26-perda-habilidade-ocidente-desaprende-codificar.md";
   slug: "2026-04-26-perda-habilidade-ocidente-desaprende-codificar";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-rag-pageindex-raciocinio.md": {
+	id: "2026-04-26-rag-pageindex-raciocinio.md";
+  slug: "2026-04-26-rag-pageindex-raciocinio";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
