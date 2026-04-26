@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import TimelineSidebar from '../components/TimelineSidebar.astro';
+import { ClientRouter } from 'astro:transitions';
 import { getPublishedPosts, getActivePathState, getCategoryLinks, getArchiveLinks } from '../utils/posts';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
   description?: string;
   image?: string;
   ogType?: 'website' | 'article';
+  publishDate?: Date;
 }
 
 const {
@@ -18,6 +20,7 @@ const {
   description = 'Filtramos apenas o que importa de verdade! Contexto e análise técnica sobre IA sem ruído.',
   image = '/favicon.svg',
   ogType = 'website',
+  publishDate,
 } = Astro.props;
 
 const fullTitle = title === 'KERN' ? title : `${title} — KERN`;
@@ -68,6 +71,29 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
 
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <ClientRouter />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": ogType === 'article' ? 'BlogPosting' : 'WebSite',
+    "headline": fullTitle,
+    "description": description,
+    "image": ogImageURL,
+    "url": Astro.url,
+    "author": {
+      "@type": "Organization",
+      "name": "KERN"
+    },
+    ...(publishDate ? { "datePublished": publishDate.toISOString() } : {}),
+    "publisher": {
+      "@type": "Organization",
+      "name": "KERN",
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL('/favicon.svg', Astro.site)
+      }
+    }
+  })} />
 </head>
 <body>
 
@@ -93,17 +119,30 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
 
   <script>
     // Back to top
-    const backToTopBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        backToTopBtn?.classList.add('show');
-      } else {
-        backToTopBtn?.classList.remove('show');
-      }
-    });
-    backToTopBtn?.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    function initBackToTop() {
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (!backToTopBtn) return;
+
+      const handleScroll = () => {
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Cleanup on page transition
+      document.addEventListener('astro:before-preparation', () => {
+        window.removeEventListener('scroll', handleScroll);
+      }, { once: true });
+    }
+
+    document.addEventListener('astro:page-load', initBackToTop);
   </script>
 
 </body>

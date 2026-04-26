@@ -48,176 +48,192 @@
 </header>
 
 <script>
-  // Dark mode
-  const html = document.documentElement;
-  const btn  = document.getElementById('theme-toggle');
-  const moon = document.getElementById('icon-moon');
-  const sun  = document.getElementById('icon-sun');
+  function initHeader() {
+    // Dark mode
+    const html = document.documentElement;
+    const btn  = document.getElementById('theme-toggle');
+    const moon = document.getElementById('icon-moon');
+    const sun  = document.getElementById('icon-sun');
 
-  function applyTheme(dark: boolean) {
-    html.setAttribute('data-theme', dark ? 'dark' : 'light');
-    if (moon) moon.style.display = dark ? 'none' : 'block';
-    if (sun)  sun.style.display  = dark ? 'block' : 'none';
-  }
+    function applyTheme(dark: boolean) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      if (moon) moon.style.display = dark ? 'none' : 'block';
+      if (sun)  sun.style.display  = dark ? 'block' : 'none';
+    }
 
-  const stored = localStorage.getItem('theme');
-  let isDark = stored === 'dark';
-  applyTheme(isDark);
-
-  btn?.addEventListener('click', () => {
-    isDark = !isDark;
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const stored = localStorage.getItem('theme');
+    let isDark = stored === 'dark';
     applyTheme(isDark);
-  });
 
-  // Search
-  const searchWrap = document.getElementById('search-wrap');
-  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
-  const searchResults = document.getElementById('search-results');
-  let postIndex: any[] = [];
-  let selectedIndex = -1;
-  let currentHits: any[] = [];
+    btn?.addEventListener('click', () => {
+      isDark = !isDark;
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      applyTheme(isDark);
+    });
 
-  async function loadIndex() {
-    if (postIndex.length) return;
-    try {
-      const res = await fetch('/search-index.json');
-      if (res.ok) {
-        const raw = await res.json();
-        postIndex = raw.map((p: any) => ({
-          ...p,
-          nTitle:   normalize(p.title),
-          nExcerpt: normalize(p.excerpt),
-          nContent: normalize(p.content || ""),
-          nTags:    (p.tags || []).map((t: string) => normalize(t))
-        }));
+    // Search
+    const searchWrap = document.getElementById('search-wrap');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+    const searchResults = document.getElementById('search-results');
+    let postIndex: any[] = [];
+    let selectedIndex = -1;
+    let currentHits: any[] = [];
+
+    async function loadIndex() {
+      if (postIndex.length) return;
+      try {
+        const res = await fetch('/search-index.json');
+        if (res.ok) {
+          const raw = await res.json();
+          postIndex = raw.map((p: any) => ({
+            ...p,
+            nTitle:   normalize(p.title),
+            nExcerpt: normalize(p.excerpt),
+            nContent: normalize(p.content || ""),
+            nTags:    (p.tags || []).map((t: string) => normalize(t))
+          }));
+        }
+      } catch {}
+    }
+
+    function normalize(str: string) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
+    function highlight(text: string, query: string) {
+      const nText = normalize(text);
+      const nQuery = normalize(query);
+      if (!nQuery) return text;
+
+      let result = "";
+      let lastIndex = 0;
+      let index = nText.indexOf(nQuery);
+
+      while (index !== -1) {
+        result += text.substring(lastIndex, index);
+        result += `<mark>${text.substring(index, index + nQuery.length)}</mark>`;
+        lastIndex = index + nQuery.length;
+        index = nText.indexOf(nQuery, lastIndex);
       }
-    } catch {}
-  }
-
-  function normalize(str: string) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  }
-
-  function highlight(text: string, query: string) {
-    const nText = normalize(text);
-    const nQuery = normalize(query);
-    if (!nQuery) return text;
-
-    let result = "";
-    let lastIndex = 0;
-    let index = nText.indexOf(nQuery);
-
-    while (index !== -1) {
-      result += text.substring(lastIndex, index);
-      result += `<mark>${text.substring(index, index + nQuery.length)}</mark>`;
-      lastIndex = index + nQuery.length;
-      index = nText.indexOf(nQuery, lastIndex);
+      result += text.substring(lastIndex);
+      return result;
     }
-    result += text.substring(lastIndex);
-    return result;
-  }
 
-  function renderResults(query: string) {
-    if (!searchResults) return;
-    if (!query.trim()) { 
-      searchResults.hidden = true; 
-      currentHits = [];
+    function renderResults(query: string) {
+      if (!searchResults) return;
+      if (!query.trim()) { 
+        searchResults.hidden = true; 
+        currentHits = [];
+        selectedIndex = -1;
+        return; 
+      }
+      
+      const q = normalize(query);
+      
+      currentHits = postIndex
+        .map(p => {
+          let score = 0;
+          if (p.nTitle.includes(q))   score += 10;
+          if (p.nTags.some((t: string) => t.includes(q))) score += 5;
+          if (p.nExcerpt.includes(q)) score += 1;
+          if (p.nContent.includes(q)) score += 1;
+          return { ...p, score };
+        })
+        .filter(p => p.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 6);
+      
       selectedIndex = -1;
-      return; 
-    }
-    
-    const q = normalize(query);
-    
-    currentHits = postIndex
-      .map(p => {
-        let score = 0;
-        if (p.nTitle.includes(q))   score += 10;
-        if (p.nTags.some((t: string) => t.includes(q))) score += 5;
-        if (p.nExcerpt.includes(q)) score += 1;
-        if (p.nContent.includes(q)) score += 1;
-        return { ...p, score };
-      })
-      .filter(p => p.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 6);
-    
-    selectedIndex = -1;
 
-    if (!currentHits.length) {
-      searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;
-    } else {
-      searchResults.innerHTML = currentHits.map((p, index) => `
-        <a class="search-results__item" role="option" id="search-result-${index}" href="/posts/${p.id}">
-          <div class="search-results__cat">${highlight(p.category, query)}</div>
-          <div class="search-results__title">${highlight(p.title, query)}</div>
-        </a>
-      `).join('');
-    }
-    searchResults.hidden = false;
-  }
-
-  function updateSelection() {
-    const items = searchResults?.querySelectorAll('.search-results__item');
-    items?.forEach((item, idx) => {
-      if (idx === selectedIndex) {
-        item.classList.add('search-results__item--active');
-        item.scrollIntoView({ block: 'nearest' });
+      if (!currentHits.length) {
+        searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;
       } else {
-        item.classList.remove('search-results__item--active');
+        searchResults.innerHTML = currentHits.map((p, index) => `
+          <a class="search-results__item" role="option" id="search-result-${index}" href="/posts/${p.id}">
+            <div class="search-results__cat">${highlight(p.category, query)}</div>
+            <div class="search-results__title">${highlight(p.title, query)}</div>
+          </a>
+        `).join('');
+      }
+      searchResults.hidden = false;
+    }
+
+    function updateSelection() {
+      const items = searchResults?.querySelectorAll('.search-results__item');
+      items?.forEach((item, idx) => {
+        if (idx === selectedIndex) {
+          item.classList.add('search-results__item--active');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('search-results__item--active');
+        }
+      });
+    }
+
+    async function focusSearchFromShortcut() {
+      await loadIndex();
+      if (!searchInput) return;
+      searchInput.focus();
+      if (searchInput.value.trim()) {
+        renderResults(searchInput.value);
+      }
+    }
+
+    searchInput?.addEventListener('focus', loadIndex);
+    searchInput?.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement | null;
+      if (target) {
+        renderResults(target.value);
       }
     });
+
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!searchWrap?.contains(e.target as Node)) {
+        if (searchResults) searchResults.hidden = true;
+      }
+    };
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        focusSearchFromShortcut();
+      }
+      if (e.key === 'Escape' && searchResults && document.activeElement !== searchInput) {
+        searchResults.hidden = true;
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleKeydown);
+
+    searchInput?.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && searchResults) {
+        searchResults.hidden = true;
+        searchInput.blur();
+      }
+      if (!searchResults || searchResults.hidden) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, currentHits.length - 1);
+        updateSelection();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection();
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+        e.preventDefault();
+        const activeItem = searchResults.querySelector('.search-results__item--active') as HTMLAnchorElement;
+        if (activeItem) activeItem.click();
+      }
+    });
+
+    // Cleanup for View Transitions
+    document.addEventListener('astro:before-preparation', () => {
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keydown', handleKeydown);
+    }, { once: true });
   }
 
-  async function focusSearchFromShortcut() {
-    await loadIndex();
-    if (!searchInput) return;
-    searchInput.focus();
-    if (searchInput.value.trim()) {
-      renderResults(searchInput.value);
-    }
-  }
-
-  searchInput?.addEventListener('focus', loadIndex);
-  searchInput?.addEventListener('input', (e) => {
-    const target = e.target as HTMLInputElement | null;
-    if (target) {
-      renderResults(target.value);
-    }
-  });
-  document.addEventListener('click', e => {
-    if (!searchWrap?.contains(e.target as Node)) {
-      if (searchResults) searchResults.hidden = true;
-    }
-  });
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      focusSearchFromShortcut();
-    }
-    if (e.key === 'Escape' && searchResults && document.activeElement !== searchInput) {
-      searchResults.hidden = true;
-    }
-  });
-  searchInput?.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && searchResults) {
-      searchResults.hidden = true;
-      searchInput.blur();
-    }
-    if (!searchResults || searchResults.hidden) return;
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      selectedIndex = Math.min(selectedIndex + 1, currentHits.length - 1);
-      updateSelection();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      selectedIndex = Math.max(selectedIndex - 1, -1);
-      updateSelection();
-    } else if (e.key === 'Enter' && selectedIndex >= 0) {
-      e.preventDefault();
-      const activeItem = searchResults.querySelector('.search-results__item--active') as HTMLAnchorElement;
-      if (activeItem) activeItem.click();
-    }
-  });
+  document.addEventListener('astro:page-load', initHeader);
 </script>

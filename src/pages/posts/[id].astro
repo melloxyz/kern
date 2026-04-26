@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import ShareButtons from '../../components/ShareButtons.astro';
 import RelatedPosts from '../../components/RelatedPosts.astro';
 import { getPublishedPosts, getRelatedPosts } from '../../utils/posts';
@@ -32,6 +33,7 @@ function formatDate(date: Date) {
   description={post.data.excerpt} 
   image={post.data.image} 
   ogType="article"
+  publishDate={post.data.date}
 >
   <div class="container--post">
     <article class="post">
@@ -49,7 +51,7 @@ function formatDate(date: Date) {
       <h1 class="post__title">{post.data.title}</h1>
 
       {post.data.image && (
-        <img src={post.data.image} alt={post.data.title} class="post__hero" loading="lazy" />
+        <Image src={post.data.image} alt={post.data.title} width={1200} height={600} class="post__hero" loading="eager" />
       )}
 
       <div class="post__body">
