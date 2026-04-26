@@ -1,10 +1,13 @@
 ```text
-  _  _____________  _   _ 
- | |/ /|  ___|| ___ \| \ | |    _ 
- | ' / | |__  | |_/ /|  \| |   (_)
- |  <  |  __| |    / | . ` |    _ 
- | . \ | |___ | |\ \ | |\  |   (_)
- |_|\_\|____/ \_| \_|\_| \_/
+__/\\\________/\\\_        __/\\\\\\\\\\\\\\\_        ____/\\\\\\\\\_____        __/\\\\\_____/\\\_
+ _\/\\\_____/\\\//__        _\/\\\///////////__        __/\\\///////\\\___        _\/\\\\\\___\/\\\_
+  _\/\\\__/\\\//_____        _\/\\\_____________        _\/\\\_____\/\\\___        _\/\\\/\\\__\/\\\_
+   _\/\\\\\\//\\\_____        _\/\\\\\\\\\\\_____        _\/\\\\\\\\\\\/____        _\/\\\//\\\_\/\\\_
+    _\/\\\//_\//\\\____        _\/\\\///////______        _\/\\\//////\\\____        _\/\\\\//\\\\/\\\_
+     _\/\\\____\//\\\___        _\/\\\_____________        _\/\\\____\//\\\___        _\/\\\_\//\\\/\\\_
+      _\/\\\_____\//\\\__        _\/\\\_____________        _\/\\\_____\//\\\__        _\/\\\__\//\\\\\\_
+       _\/\\\______\//\\\_        _\/\\\\\\\\\\\\\\\_        _\/\\\______\//\\\_        _\/\\\___\//\\\\\_
+        _\///________\///__        _\///////////////__        _\///________\///__        _\///_____\/////__
 ```
 
 # KERN. — Inteligência Artificial sem ruído.
@@ -32,16 +35,19 @@ O **KERN.** é um blog editorial minimalista focado em curadoria de notícias so
 ## ✨ Recursos de Elite
 
 ### 🔒 Privacidade & Segurança
+
 - **Zero Trackers:** Sem Google Analytics, sem pixels, sem cookies de rastreio.
 - **Fontes Locais:** Todas as fontes (Source Serif 4) são hospedadas no próprio servidor para evitar vazamento de IP via Google Fonts.
 - **Security Headers:** Implementação robusta de Content Security Policy (CSP) e Referrer Policy.
 
 ### ⚡ Performance Extrema
+
 - **100/100 Lighthouse:** Código otimizado para Core Web Vitals.
 - **View Transitions:** Navegação fluida sem recarregamento de página via Astro ClientRouter.
 - **Static First:** Geração estática total para entrega via edge.
 
 ### 🔍 SEO & Social
+
 - **JSON-LD Automático:** Dados estruturados do tipo `BlogPosting` em todos os artigos.
 - **Metadados Sociais:** Tags Open Graph e Twitter Cards avançadas para previews ricas.
 - **Compartilhamento Inteligente:** Suporte nativo para 7 redes sociais (X, Bluesky, Threads, LinkedIn, WhatsApp, Telegram e Facebook).
@@ -71,6 +77,7 @@ kern/
 ## 🛠️ Desenvolvimento
 
 ### Instalação
+
 ```bash
 git clone https://github.com/seu-usuario/kern.git
 cd kern
@@ -78,12 +85,13 @@ npm install
 ```
 
 ### Comandos Principais
-| Comando | Descrição |
-| :--- | :--- |
-| `npm run dev` | Inicia o servidor de desenvolvimento em `localhost:4321` |
-| `npm run build` | Gera o build de produção na pasta `dist/` |
-| `npm run check` | Executa validação de tipos e integridade do Astro |
-| `npm run new-post` | **Assistente CLI interativo para criar novos posts** |
+
+| Comando            | Descrição                                                |
+| :----------------- | :------------------------------------------------------- |
+| `npm run dev`      | Inicia o servidor de desenvolvimento em `localhost:4321` |
+| `npm run build`    | Gera o build de produção na pasta `dist/`                |
+| `npm run check`    | Executa validação de tipos e integridade do Astro        |
+| `npm run new-post` | **Assistente CLI interativo para criar novos posts**     |
 
 ---
 
@@ -96,6 +104,7 @@ npm run new-post
 ```
 
 O assistente guiará você por:
+
 1. **Título:** Define o nome do artigo.
 2. **Categoria:** Seleção via menu (Modelos, Negócios, Política, etc).
 3. **Tags:** Palavras-chave para SEO e relacionamento.
@@ -112,4 +121,4 @@ O arquivo será gerado automaticamente em `src/content/posts/` com o frontmatter
 
 ---
 
-*Kern (do alemão): Núcleo, essência.*
+_Kern (do alemão): Núcleo, essência._

@@ -36,6 +36,20 @@ export async function getPublishedPosts() {
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+export async function getRecentPosts(limitDays = 3) {
+  const allPosts = await getPublishedPosts();
+  const now = new Date();
+  const threshold = new Date(now);
+  threshold.setDate(now.getDate() - limitDays);
+  threshold.setHours(0, 0, 0, 0);
+
+  let filtered = allPosts.filter((p) => p.data.date >= threshold);
+  if (filtered.length === 0) {
+    filtered = allPosts;
+  }
+  return filtered;
+}
+
 export function getActivePathState(pathname: string) {
   let activeCatSlug: string | null = null;
   let activeYear: string | null = null;

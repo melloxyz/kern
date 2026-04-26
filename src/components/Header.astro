@@ -89,7 +89,6 @@
             ...p,
             nTitle:   normalize(p.title),
             nExcerpt: normalize(p.excerpt),
-            nContent: normalize(p.content || ""),
             nTags:    (p.tags || []).map((t: string) => normalize(t))
           }));
         }
@@ -102,41 +101,50 @@
 
     function highlight(text: string, query: string) {
       const nText = normalize(text);
+      const tokens = normalize(query).split(/\s+/).filter(t => t.length > 0);
+      if (tokens.length === 0) return text;
+
+      // Simple highlight adapted for the first token for now
+      // as multi-token highlighting in HTML is complex.
       const nQuery = normalize(query);
-      if (!nQuery) return text;
-
-      let result = "";
-      let lastIndex = 0;
-      let index = nText.indexOf(nQuery);
-
-      while (index !== -1) {
-        result += text.substring(lastIndex, index);
-        result += `<mark>${text.substring(index, index + nQuery.length)}</mark>`;
-        lastIndex = index + nQuery.length;
-        index = nText.indexOf(nQuery, lastIndex);
+      const index = nText.indexOf(nQuery);
+      if (index !== -1) {
+        return text.substring(0, index) + `<mark>${text.substring(index, index + nQuery.length)}</mark>` + text.substring(index + nQuery.length);
       }
-      result += text.substring(lastIndex);
-      return result;
+      return text;
     }
 
     function renderResults(query: string) {
       if (!searchResults) return;
-      if (!query.trim()) { 
+      const trimmedQuery = query.trim();
+      if (!trimmedQuery) { 
         searchResults.hidden = true; 
         currentHits = [];
         selectedIndex = -1;
         return; 
       }
       
-      const q = normalize(query);
+      const q = normalize(trimmedQuery);
+      const tokens = q.split(/\s+/).filter(t => t.length > 0);
       
       currentHits = postIndex
         .map(p => {
           let score = 0;
-          if (p.nTitle.includes(q))   score += 10;
-          if (p.nTags.some((t: string) => t.includes(q))) score += 5;
-          if (p.nExcerpt.includes(q)) score += 1;
-          if (p.nContent.includes(q)) score += 1;
+          const matchesAll = tokens.every(token => 
+            p.nTitle.includes(token) || 
+            p.nExcerpt.includes(token) || 
+            p.nTags.some((t: string) => t.includes(token))
+          );
+
+          if (matchesAll) {
+            score += 10;
+            if (p.nTitle.includes(q)) score += 20;
+            if (p.nExcerpt.includes(q)) score += 5;
+            tokens.forEach(token => {
+              if (p.nTitle.includes(token)) score += 5;
+              if (p.nTags.some((t: string) => t.includes(token))) score += 3;
+            });
+          }
           return { ...p, score };
         })
         .filter(p => p.score > 0)

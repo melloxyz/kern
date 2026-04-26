@@ -686,10 +686,12 @@ h3 {
 
 .post__hero {
   width: 100%;
+  aspect-ratio: 2 / 1;
   max-height: 400px;
   object-fit: cover;
   margin-bottom: 28px;
   border: 1px solid var(--border);
+  background: var(--bg-card);
 }
 
 .post__body {

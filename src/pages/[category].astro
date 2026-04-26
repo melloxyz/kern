@@ -1,28 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import { getReadingTime } from '../utils/posts';
+import { getPublishedPosts, getReadingTime, CATEGORIES } from '../utils/posts';
 
 export async function getStaticPaths() {
-  const CATEGORY_ROUTES = [
-    { slug: 'modelos', category: 'MODELOS', label: 'Modelos' },
-    { slug: 'seguranca', category: 'SEGURANÇA', label: 'Segurança' },
-    { slug: 'open-source', category: 'OPEN SOURCE', label: 'Open Source' },
-    { slug: 'trabalho', category: 'TRABALHO', label: 'Trabalho' },
-    { slug: 'negocios', category: 'NEGÓCIOS', label: 'Negócios' },
-    { slug: 'politica', category: 'POLÍTICA', label: 'Política' },
-    { slug: 'pesquisa', category: 'PESQUISA', label: 'Pesquisa' },
-  ];
+  const posts = await getPublishedPosts();
 
-  const posts = await getCollection('posts', ({ data }) => !data.draft);
-
-  return CATEGORY_ROUTES.map(route => ({
+  return CATEGORIES.map(route => ({
     params: { category: route.slug },
     props: {
       label: route.label,
-      posts: posts
-        .filter(post => post.data.category === route.category)
-        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+      posts: posts.filter(post => post.data.category === route.category),
     },
   }));
 }
