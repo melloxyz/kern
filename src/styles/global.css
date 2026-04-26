@@ -572,7 +572,7 @@ h3 {
   font-size: 13px;
   font-weight: 500;
   color: var(--ink-light);
-  padding: 6px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
   transition: color 0.15s;
   gap: 8px;
