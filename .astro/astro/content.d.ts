@@ -207,6 +207,41 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"2026-04-26-asahi-linux-7-0-linux-apple-silicon.md": {
+	id: "2026-04-26-asahi-linux-7-0-linux-apple-silicon.md";
+  slug: "2026-04-26-asahi-linux-7-0-linux-apple-silicon";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-gnupg-criptografia-pos-quantica.md": {
+	id: "2026-04-26-gnupg-criptografia-pos-quantica.md";
+  slug: "2026-04-26-gnupg-criptografia-pos-quantica";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-perda-habilidade-ocidente-desaprende-codificar.md": {
+	id: "2026-04-26-perda-habilidade-ocidente-desaprende-codificar.md";
+  slug: "2026-04-26-perda-habilidade-ocidente-desaprende-codificar";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-statecharts-disciplina-essencial-caos-codigo.md": {
+	id: "2026-04-26-statecharts-disciplina-essencial-caos-codigo.md";
+  slug: "2026-04-26-statecharts-disciplina-essencial-caos-codigo";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
+"2026-04-26-ue-identidade-digital-controle-idade.md": {
+	id: "2026-04-26-ue-identidade-digital-controle-idade.md";
+  slug: "2026-04-26-ue-identidade-digital-controle-idade";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 };
 
 	};
