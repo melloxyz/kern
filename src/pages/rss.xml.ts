@@ -20,7 +20,7 @@ export async function GET() {
 
   const items = posts
     .map((post: Post) => {
-      const postUrl = `${siteUrl}/posts/${post.slug}`;
+      const postUrl = `${siteUrl}/posts/${post.id}`;
       const title = escapeXml(post.data.title);
       const description = escapeXml(post.data.excerpt);
       const pubDate = post.data.date.toUTCString();

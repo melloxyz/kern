@@ -148,7 +148,7 @@
       searchResults.innerHTML = `<p class="search-results__empty">Nenhum resultado para "${query}"</p>`;
     } else {
       searchResults.innerHTML = currentHits.map((p, index) => `
-        <a class="search-results__item" role="option" id="search-result-${index}" href="/posts/${p.slug}">
+        <a class="search-results__item" role="option" id="search-result-${index}" href="/posts/${p.id}">
           <div class="search-results__cat">${highlight(p.category, query)}</div>
           <div class="search-results__title">${highlight(p.title, query)}</div>
         </a>

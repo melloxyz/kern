@@ -71,7 +71,7 @@ function formatDate(date: Date) {
     ) : (
       <div>
         {posts.map(post => (
-          <a href={`/posts/${post.slug}`} class="post-row">
+          <a href={`/posts/${post.id}`} class="post-row">
             <div>
               <div class="post-row__meta">
                 <span class="post-row__category">{post.data.category}</span>
@@ -80,7 +80,7 @@ function formatDate(date: Date) {
               <h2 class="post-row__title">{post.data.title}</h2>
               <p class="post-row__excerpt">{post.data.excerpt}</p>
             </div>
-            <span class="post-row__time">{getReadingTime(post.body)}</span>
+            <span class="post-row__time">{getReadingTime(post.body || '')}</span>
           </a>
         ))}
       </div>

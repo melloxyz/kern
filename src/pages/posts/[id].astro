@@ -1,19 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ShareButtons from '../../components/ShareButtons.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
   return posts.map(post => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await post.render();
-const readingTime = remarkPluginFrontmatter.readingTime;
+const { Content, remarkPluginFrontmatter } = await render(post);
+const readingTime = remarkPluginFrontmatter?.readingTime;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', {

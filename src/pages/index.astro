@@ -32,14 +32,14 @@ function formatDate(date: Date) {
     {featured.length > 0 && (
       <div class={`feed__featured ${featured.length === 1 ? 'feed__featured-single' : ''}`}>
         {featured.map(post => (
-          <a href={`/posts/${post.slug}`} class="card">
+          <a href={`/posts/${post.id}`} class="card">
             <div class="card__meta">
               <span class="card__category">{post.data.category}</span>
               <span class="card__date">{formatDate(post.data.date)}</span>
             </div>
             <h2 class="card__title">{post.data.title}</h2>
             <p class="card__excerpt">{post.data.excerpt}</p>
-            <span class="card__read">ler → ({getReadingTime(post.body)})</span>
+            <span class="card__read">ler → ({getReadingTime(post.body || '')})</span>
           </a>
         ))}
       </div>
@@ -53,7 +53,7 @@ function formatDate(date: Date) {
 
     <div>
       {rest.map(post => (
-        <a href={`/posts/${post.slug}`} class="post-row">
+        <a href={`/posts/${post.id}`} class="post-row">
           <div>
             <div class="post-row__meta">
               <span class="post-row__category">{post.data.category}</span>
@@ -62,7 +62,7 @@ function formatDate(date: Date) {
             <h2 class="post-row__title">{post.data.title}</h2>
             <p class="post-row__excerpt">{post.data.excerpt}</p>
           </div>
-          <span class="post-row__time">{getReadingTime(post.body)}</span>
+          <span class="post-row__time">{getReadingTime(post.body || '')}</span>
         </a>
       ))}
     </div>
