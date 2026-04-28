@@ -8,46 +8,50 @@ export async function getStaticPaths() {
   return CATEGORIES.map(route => ({
     params: { category: route.slug },
     props: {
-      label: route.label,
+      category: route,
       posts: posts.filter(post => post.data.category === route.category),
     },
   }));
 }
 
-const { label, posts } = Astro.props;
+const { category, posts } = Astro.props;
+const { label, description } = category;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 ---
 
-<Base title={label} description={`Posts em ${label} no KERN`}>
-  <div class="feed">
-    <div class="tag-header">
+<Base title={label} description={description}>
+  <div class="category-hero">
+    <div class="category-hero__header">
       <a href="/" class="post__back">← voltar ao feed</a>
-      <h1>
-        {label}
-        <small style="font-weight:400;font-size:0.6em;color:var(--ink-light);">
-          ({posts.length} post{posts.length !== 1 ? 's' : ''})
-        </small>
-      </h1>
+      <div class="category-hero__meta">
+        <span class="category-hero__count">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
+      </div>
     </div>
+    
+    <h1 class="category-hero__title">{label}</h1>
+    <p class="category-hero__description">{description}</p>
+    <div class="category-hero__divider"></div>
+  </div>
 
+  <div class="feed">
     {posts.length === 0 ? (
       <p class="search-results__empty">Ainda não há notícias nesta categoria.</p>
     ) : (
-      <div>
+      <div class="category-grid">
         {posts.map(post => (
-          <a href={`/posts/${post.id}`} class="post-row">
+          <a href={`/posts/${post.id}`} class="card">
             <div>
-              <div class="post-row__meta">
-                <span class="post-row__category">{post.data.category}</span>
-                <span class="post-row__date">· {formatDate(post.data.date)}</span>
+              <div class="card__meta">
+                <span class="card__category">{post.data.category}</span>
+                <span class="card__date">{formatDate(post.data.date)}</span>
               </div>
-              <h2 class="post-row__title">{post.data.title}</h2>
-              <p class="post-row__excerpt">{post.data.excerpt}</p>
+              <h2 class="card__title">{post.data.title}</h2>
+              <p class="card__excerpt">{post.data.excerpt}</p>
             </div>
-            <span class="post-row__time">{getReadingTime(post.body || '')}</span>
+            <span class="card__time">{getReadingTime(post.body || '')}</span>
           </a>
         ))}
       </div>

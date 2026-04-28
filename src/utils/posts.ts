@@ -1,13 +1,48 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export const CATEGORIES = [
-  { slug: "modelos", category: "MODELOS", label: "Modelos" },
-  { slug: "seguranca", category: "SEGURANÇA", label: "Segurança" },
-  { slug: "open-source", category: "OPEN SOURCE", label: "Open Source" },
-  { slug: "trabalho", category: "TRABALHO", label: "Trabalho" },
-  { slug: "negocios", category: "NEGÓCIOS", label: "Negócios" },
-  { slug: "politica", category: "POLÍTICA", label: "Política" },
-  { slug: "pesquisa", category: "PESQUISA", label: "Pesquisa" },
+  { 
+    slug: "modelos", 
+    category: "MODELOS", 
+    label: "Modelos",
+    description: "Exploração técnica de LLMs, arquiteturas de redes neurais e o estado da arte da inteligência sintética."
+  },
+  { 
+    slug: "seguranca", 
+    category: "SEGURANÇA", 
+    label: "Segurança",
+    description: "Alinhamento, riscos existenciais e a defesa de sistemas contra vetores de ataque baseados em IA."
+  },
+  { 
+    slug: "open-source", 
+    category: "OPEN SOURCE", 
+    label: "Open Source",
+    description: "O movimento de democratização da IA, pesos abertos e o ecossistema colaborativo global."
+  },
+  { 
+    slug: "trabalho", 
+    category: "TRABALHO", 
+    label: "Trabalho",
+    description: "Impactos socioeconômicos, automação de tarefas e a evolução das carreiras na era da pós-eficiência."
+  },
+  { 
+    slug: "negocios", 
+    category: "NEGÓCIOS", 
+    label: "Negócios",
+    description: "Análise de mercado, investimentos em tecnologia e as novas verticais de valor criadas pela IA."
+  },
+  { 
+    slug: "politica", 
+    category: "POLÍTICA", 
+    label: "Política",
+    description: "Regulamentação, soberania tecnológica e o impacto da inteligência artificial nas democracias."
+  },
+  { 
+    slug: "pesquisa", 
+    category: "PESQUISA", 
+    label: "Pesquisa",
+    description: "Novos papers, descobertas fundamentais e a ciência teórica que move a fronteira do possível."
+  },
 ];
 
 export const MONTHS_PT = [

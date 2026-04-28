@@ -1,19 +1,9 @@
 ---
 import Base from '../../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import { getReadingTime } from '../../../../utils/posts';
+import { getReadingTime, CATEGORIES } from '../../../../utils/posts';
 
 export async function getStaticPaths() {
-  const CATEGORY_ROUTES = [
-    { slug: 'modelos', category: 'MODELOS', label: 'Modelos' },
-    { slug: 'seguranca', category: 'SEGURANÇA', label: 'Segurança' },
-    { slug: 'open-source', category: 'OPEN SOURCE', label: 'Open Source' },
-    { slug: 'trabalho', category: 'TRABALHO', label: 'Trabalho' },
-    { slug: 'negocios', category: 'NEGÓCIOS', label: 'Negócios' },
-    { slug: 'politica', category: 'POLÍTICA', label: 'Política' },
-    { slug: 'pesquisa', category: 'PESQUISA', label: 'Pesquisa' },
-  ];
-
   const allPosts = await getCollection('posts', ({ data }) => !data.draft);
   const paths = [];
 
@@ -28,7 +18,7 @@ export async function getStaticPaths() {
   }
 
   for (const { year, month } of archiveMap.values()) {
-    for (const route of CATEGORY_ROUTES) {
+    for (const route of CATEGORIES) {
       const filteredPosts = allPosts
         .filter(p => p.data.date.getFullYear() === Number(year) && p.data.date.getMonth() + 1 === Number(month) && p.data.category === route.category)
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

@@ -1105,6 +1105,69 @@ h3 {
   }
 }
 
+/* ── CATEGORY page hero ── */
+.category-hero {
+  padding: 64px 0 48px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+.category-hero__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.category-hero__header .post__back {
+  margin-bottom: 0;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.category-hero__meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.category-hero__title {
+  font-family: var(--editorial);
+  font-size: clamp(48px, 10vw, 84px);
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 24px;
+  line-height: 0.85;
+  letter-spacing: -4px;
+  word-break: break-word;
+}
+.category-hero__description {
+  font-family: var(--editorial);
+  font-size: clamp(18px, 3vw, 24px);
+  font-style: italic;
+  color: var(--ink-mid);
+  max-width: 800px;
+  line-height: 1.35;
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+.category-hero__divider {
+  display: none;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.category-grid .card {
+  height: 100%;
+}
+
 /* ── TAG / ARQUIVO page header ── */
 .tag-header {
   padding: 28px 0 16px;
