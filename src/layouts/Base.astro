@@ -96,7 +96,7 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
     }
   })} />
 </head>
-<body>
+<body data-context-label={title}>
 
   <Header />
 
@@ -143,7 +143,50 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
       }, { once: true });
     }
 
-    document.addEventListener('astro:page-load', initBackToTop);
+    // Track navigation context for "back to feed" links
+    function initNavigationContext() {
+      const { pathname } = window.location;
+      const normalizedPath = pathname.replace(/\/$/, '') || '/';
+      
+      const isPost = normalizedPath.startsWith('/posts/');
+      const isStatic = ['/sobre', '/fontes', '/privacidade', '/404'].includes(normalizedPath);
+      
+      // If it's a feed/category/tag/archive page, save it
+      if (!isPost && !isStatic) {
+        const rawLabel = document.body.dataset.contextLabel;
+        const label = rawLabel === 'KERN' ? 'feed principal' : rawLabel;
+        
+        sessionStorage.setItem('lastFeedContext', JSON.stringify({
+          url: window.location.href,
+          label: label
+        }));
+      }
+
+      // If we are on a post page, update the back link to the last feed context
+      if (isPost) {
+        const backLink = document.querySelector('.post__back') as HTMLAnchorElement;
+        if (backLink) {
+          const stored = sessionStorage.getItem('lastFeedContext');
+          if (stored) {
+            try {
+              const lastFeed = JSON.parse(stored);
+              // Only update if the link currently points to the root (to avoid overriding other specific back links)
+              if (backLink.getAttribute('href') === '/') {
+                backLink.href = lastFeed.url;
+                backLink.textContent = `← voltar para ${lastFeed.label.toLowerCase()}`;
+              }
+            } catch (e) {
+              console.error('Error parsing feed context', e);
+            }
+          }
+        }
+      }
+    }
+
+    document.addEventListener('astro:page-load', () => {
+      initBackToTop();
+      initNavigationContext();
+    });
   </script>
 
 </body>
