@@ -3,16 +3,18 @@
    =================================== */
 
 @font-face {
-  font-family: 'Source Serif 4';
-  src: url('./fonts/Source_Serif_4/SourceSerif4-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  font-family: "Source Serif 4";
+  src: url("./fonts/Source_Serif_4/SourceSerif4-VariableFont_opsz,wght.ttf")
+    format("truetype-variations");
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Source Serif 4';
-  src: url('./fonts/Source_Serif_4/SourceSerif4-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  font-family: "Source Serif 4";
+  src: url("./fonts/Source_Serif_4/SourceSerif4-Italic-VariableFont_opsz,wght.ttf")
+    format("truetype-variations");
   font-weight: 400 700;
   font-style: italic;
   font-display: swap;
@@ -218,7 +220,9 @@ h3 {
   pointer-events: none;
   letter-spacing: 0.5px;
 }
-.site-header__search input:not(:placeholder-shown) ~ .site-header__search-shortcut {
+.site-header__search
+  input:not(:placeholder-shown)
+  ~ .site-header__search-shortcut {
   opacity: 0;
 }
 
@@ -453,9 +457,10 @@ h3 {
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 700;
-  color: #fff;
-  background: var(--red);
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
   padding: 3px 5px;
+  border-radius: 4px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -521,6 +526,9 @@ h3 {
   font-size: 12px;
   font-weight: 600;
   color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+  padding: 2px 5px;
+  border-radius: 4px;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -661,6 +669,9 @@ h3 {
   font-size: 12px;
   font-weight: 600;
   color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+  padding: 3px 5px;
+  border-radius: 4px;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -1100,7 +1111,7 @@ h3 {
 .related-card:hover {
   border-color: var(--red);
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 .related-card__content {
   padding: 24px;
@@ -1112,9 +1123,14 @@ h3 {
   font-size: 10px;
   font-weight: 700;
   color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+  padding: 4px 6px;
+  border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
+  display: inline-block;
+  align-self: flex-start;
 }
 .related-card__title {
   font-family: var(--editorial);
