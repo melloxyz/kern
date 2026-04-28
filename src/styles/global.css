@@ -414,9 +414,7 @@ h3 {
   background: var(--bg-hover);
 }
 
-.card__image {
-  display: none;
-}
+
 
 .card__meta {
   display: flex;
@@ -474,9 +472,7 @@ h3 {
   background: var(--bg-hover);
 }
 
-.card__image {
-  display: none;
-}
+
 
 .card__meta {
   display: flex;
@@ -597,9 +593,7 @@ h3 {
   white-space: nowrap;
   margin-left: auto;
 }
-.post-row__thumb {
-  display: none;
-}
+
 
 /* ── ARCHIVE SIDEBAR (direita) ── */
 .page-layout__archive {
