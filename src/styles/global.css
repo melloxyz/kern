@@ -400,8 +400,8 @@ h3 {
 .divider {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 24px 0 18px;
+  gap: 16px;
+  margin: 48px 0 28px;
 }
 .divider::before,
 .divider::after {
@@ -412,10 +412,14 @@ h3 {
 }
 .divider__label {
   font-family: var(--mono);
-  font-size: 11px;
-  color: var(--ink-mid);
-  letter-spacing: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink-light);
+  letter-spacing: 4px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Card featured */
