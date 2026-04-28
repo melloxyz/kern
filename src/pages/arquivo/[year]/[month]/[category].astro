@@ -46,7 +46,9 @@ const monthLabel = `${MONTHS_PT[month - 1]} ${year}`;
 const title = `${categoryLabel} em ${monthLabel}`;
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  const time = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const day = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  return `${time} · ${day}`;
 }
 ---
 

@@ -10,7 +10,9 @@ const featured = featuredPosts.slice(0, 2);
 const rest = allPosts.filter(p => !featured.includes(p));
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  const time = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const day = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  return `${time} · ${day}`;
 }
 ---
 
