@@ -28,3 +28,67 @@ const { archive, activeArchiveKey } = Astro.props;
     </ul>
   </nav>
 </aside>
+
+<style>
+/* ── ARCHIVE SIDEBAR (direita) ── */
+.page-layout__archive {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  padding: 24px 0;
+}
+
+.archive__title {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-light);
+  text-transform: none;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive__list {
+  list-style: none;
+}
+
+.archive__item a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-light);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.15s;
+  gap: 8px;
+}
+.archive__item:last-child a {
+  border-bottom: none;
+}
+.archive__item a:hover {
+  color: var(--red);
+}
+.archive__item--active a {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.archive__count {
+  font-size: 13px;
+  color: var(--red);
+  flex-shrink: 0;
+  background: var(--bg-hover);
+  padding: 1px 5px;
+  border-radius: 2px;
+  min-width: 20px;
+  text-align: center;
+}
+.archive__item--active .archive__count {
+  background: var(--red);
+  color: #fff;
+}
+</style>

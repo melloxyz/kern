@@ -23,3 +23,91 @@
     </div>
   </div>
 </footer>
+
+<style>
+/* ── FOOTER ── */
+.site-footer-wrap {
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.site-footer {
+  padding: 48px 24px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.site-footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.site-footer__identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-footer__brand {
+  font-family: var(--editorial);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: inline-block;
+  color: var(--ink);
+  line-height: 1;
+}
+.site-footer__brand .dot {
+  color: var(--red);
+}
+
+.site-footer__tagline {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-light);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.site-footer__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.site-footer__links a {
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.site-footer__links a:hover {
+  color: var(--red);
+}
+.site-footer__links .sep {
+  color: var(--border);
+}
+
+.site-footer__copy {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+</style>

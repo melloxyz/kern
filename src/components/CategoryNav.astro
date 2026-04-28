@@ -57,3 +57,81 @@ const iconMap: Record<string, any> = {
     })}
   </ul>
 </nav>
+
+<style>
+/* ── CATEGORY NAV (esquerda) ── */
+.cat-nav {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  padding: 24px 0;
+}
+
+.cat-nav__title {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-light);
+  text-transform: none;
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+.cat-nav__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cat-nav__link {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-light);
+  transition:
+    color 0.15s,
+    background 0.15s;
+  gap: 10px;
+}
+.cat-nav__link:hover {
+  color: var(--ink);
+  background: var(--bg-hover);
+}
+.cat-nav__link[aria-current="page"],
+.cat-nav__link.active {
+  color: var(--red);
+  background: var(--bg-hover);
+  font-weight: 700;
+}
+
+.cat-nav__icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.cat-nav__link[aria-current="page"] .cat-nav__icon,
+.cat-nav__link.active .cat-nav__icon {
+  opacity: 1;
+}
+
+.cat-nav__label {
+  flex-grow: 1;
+}
+
+.cat-nav__count {
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+.cat-nav__sep {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+</style>
