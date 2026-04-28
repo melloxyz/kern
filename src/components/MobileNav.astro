@@ -1,0 +1,339 @@
+---
+import { 
+  Cpu, 
+  ShieldCheck, 
+  CodeXml, 
+  Briefcase, 
+  TrendingUp, 
+  Landmark, 
+  SearchCode, 
+  LayoutGrid,
+  X,
+  Rss,
+  Info,
+  ExternalLink
+} from '@lucide/astro';
+
+interface Props {
+  catLinks: Array<{
+    href: string;
+    label: string;
+    icon: string;
+    slug: string | null;
+    count: number;
+  }>;
+  archive: Array<{
+    label: string;
+    href: string;
+    key: string;
+    count: number;
+  }>;
+  activeCatSlug: string | null;
+  activeArchiveKey?: string;
+}
+
+const { catLinks, archive, activeCatSlug, activeArchiveKey } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  Cpu,
+  ShieldCheck,
+  CodeXml,
+  Briefcase,
+  TrendingUp,
+  Landmark,
+  SearchCode,
+  LayoutGrid
+};
+---
+
+<div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer__overlay" id="mobile-drawer-overlay"></div>
+  
+  <div class="mobile-drawer__content">
+    <div class="mobile-drawer__header">
+      <span class="mobile-drawer__logo">KERN<span class="dot">.</span></span>
+      <button id="mobile-drawer-close" class="mobile-drawer__close" aria-label="Fechar menu">
+        <X size={24} stroke-width={2.5} />
+      </button>
+    </div>
+
+    <div class="mobile-drawer__body">
+      <section class="mobile-drawer__section">
+        <p class="mobile-drawer__label">Categorias</p>
+        <ul class="mobile-drawer__list">
+          {catLinks.map(link => {
+            const Icon = iconMap[link.icon];
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class={`mobile-drawer__link ${activeCatSlug === link.slug ? 'active' : (link.slug === null && !activeCatSlug ? 'active' : '')}`}
+                >
+                  {Icon && <Icon size={18} stroke-width={2} class="mobile-drawer__icon" />}
+                  <span class="mobile-drawer__text">{link.label}</span>
+                  {link.slug !== null && <span class="mobile-drawer__count">{link.count}</span>}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <div class="mobile-drawer__sep"></div>
+
+      <section class="mobile-drawer__section">
+        <p class="mobile-drawer__label">Timeline</p>
+        <ul class="mobile-drawer__list">
+          {archive.slice(0, 6).map(entry => (
+            <li>
+              <a 
+                href={entry.href} 
+                class={`mobile-drawer__link ${activeArchiveKey === entry.key ? 'active' : ''}`}
+              >
+                <span class="mobile-drawer__text">{entry.label}</span>
+                <span class="mobile-drawer__count">{entry.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div class="mobile-drawer__sep"></div>
+
+      <section class="mobile-drawer__section">
+        <p class="mobile-drawer__label">Explorar</p>
+        <ul class="mobile-drawer__list">
+          <li>
+            <a href="/sobre" class="mobile-drawer__link">
+              <Info size={18} stroke-width={2} class="mobile-drawer__icon" />
+              <span class="mobile-drawer__text">Sobre o Projeto</span>
+            </a>
+          </li>
+          <li>
+            <a href="/fontes" class="mobile-drawer__link">
+              <ExternalLink size={18} stroke-width={2} class="mobile-drawer__icon" />
+              <span class="mobile-drawer__text">Nossas Fontes</span>
+            </a>
+          </li>
+          <li>
+            <a href="/rss.xml" class="mobile-drawer__link">
+              <Rss size={18} stroke-width={2} class="mobile-drawer__icon" />
+              <span class="mobile-drawer__text">RSS Feed</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/melloxyz/kern-ia" target="_blank" class="mobile-drawer__link">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="mobile-drawer__icon">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span class="mobile-drawer__text">GitHub</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="mobile-drawer__footer">
+      <p>© 2026 KERN. Editorial de IA</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0.3s;
+  }
+  .mobile-drawer.open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-drawer__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-drawer.open .mobile-drawer__overlay {
+    opacity: 1;
+  }
+
+  .mobile-drawer__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--bg);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+  }
+  .mobile-drawer.open .mobile-drawer__content {
+    transform: translateX(0);
+  }
+
+  .mobile-drawer__header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-drawer__logo {
+    font-family: var(--editorial);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .mobile-drawer__logo .dot {
+    color: var(--red);
+  }
+
+  .mobile-drawer__close {
+    background: none;
+    border: none;
+    color: var(--ink-light);
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .mobile-drawer__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 0;
+  }
+
+  .mobile-drawer__section {
+    padding: 0 16px;
+  }
+  .mobile-drawer__label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .mobile-drawer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobile-drawer__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--ink-mid);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .mobile-drawer__link:hover {
+    background: var(--bg-hover);
+    color: var(--ink);
+  }
+  .mobile-drawer__link.active {
+    background: var(--bg-hover);
+    color: var(--red);
+  }
+
+  .mobile-drawer__icon {
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .active .mobile-drawer__icon {
+    opacity: 1;
+  }
+
+  .mobile-drawer__text {
+    flex: 1;
+  }
+  .mobile-drawer__count {
+    font-size: 11px;
+    color: var(--ink-faint);
+    background: var(--bg-card);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .mobile-drawer__sep {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+    opacity: 0.5;
+  }
+
+  .mobile-drawer__footer {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+</style>
+
+<script>
+  function initDrawer() {
+    const drawer = document.getElementById('mobile-drawer');
+    const openBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+
+    if (!drawer) return;
+
+    const open = () => {
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    openBtn?.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    overlay?.addEventListener('click', close);
+
+    // Close on link click
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', close);
+    });
+
+    // Cleanup for View Transitions
+    document.addEventListener('astro:before-preparation', () => {
+      close();
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', initDrawer);
+</script>

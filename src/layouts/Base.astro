@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
+import '../styles/responsive.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CategoryNav from '../components/CategoryNav.astro';
+import MobileNav from '../components/MobileNav.astro';
 import TimelineSidebar from '../components/TimelineSidebar.astro';
 import { ClientRouter } from 'astro:transitions';
 import { getPublishedPosts, getActivePathState, getCategoryLinks, getArchiveLinks } from '../utils/posts';
@@ -99,6 +101,13 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
 <body data-context-label={title}>
 
   <Header />
+
+  <MobileNav 
+    catLinks={catLinks} 
+    archive={archive} 
+    activeCatSlug={activeCatSlug} 
+    activeArchiveKey={activeArchiveKey} 
+  />
 
   <div class="page-layout">
     <CategoryNav catLinks={catLinks} activeCatSlug={activeCatSlug} />

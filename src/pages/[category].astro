@@ -48,11 +48,11 @@ function formatDate(date: Date) {
               <div class="card__meta">
                 <CategoryBadge category={post.data.category} class="card__category" />
                 <span class="card__date">{formatDate(post.data.date)}</span>
+                <span class="card__time">{getReadingTime(post.body || '')}</span>
               </div>
               <h2 class="card__title">{post.data.title}</h2>
               <p class="card__excerpt">{post.data.excerpt}</p>
             </div>
-            <span class="card__time">{getReadingTime(post.body || '')}</span>
           </a>
         ))}
       </div>
