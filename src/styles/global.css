@@ -436,7 +436,10 @@ h3 {
   padding: 24px;
   cursor: pointer;
   transition: background 0.15s;
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
 }
 .card:hover {
   background: var(--bg-hover);
@@ -451,6 +454,63 @@ h3 {
   gap: 10px;
   align-items: center;
   margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.card__category {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+  padding: 3px 5px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.card__date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-light);
+}
+.card__title {
+  font-family: var(--editorial);
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.18;
+  margin-bottom: 12px;
+}
+.card__excerpt {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-mid);
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card__time {
+  font-family: var(--ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  white-space: nowrap;
+  padding-top: 1px;
+}
+.card:hover {
+  background: var(--bg-hover);
+}
+
+.card__image {
+  display: none;
+}
+
+.card__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 11px;
   flex-wrap: wrap;
 }
 .card__category {
