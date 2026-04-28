@@ -5,42 +5,49 @@ export const CATEGORIES = [
     slug: "modelos", 
     category: "MODELOS", 
     label: "Modelos",
+    icon: "Cpu",
     description: "Exploração técnica de LLMs, arquiteturas de redes neurais e o estado da arte da inteligência sintética."
   },
   { 
     slug: "seguranca", 
     category: "SEGURANÇA", 
     label: "Segurança",
+    icon: "ShieldCheck",
     description: "Alinhamento, riscos existenciais e a defesa de sistemas contra vetores de ataque baseados em IA."
   },
   { 
     slug: "open-source", 
     category: "OPEN SOURCE", 
     label: "Open Source",
+    icon: "CodeXml",
     description: "O movimento de democratização da IA, pesos abertos e o ecossistema colaborativo global."
   },
   { 
     slug: "trabalho", 
     category: "TRABALHO", 
     label: "Trabalho",
+    icon: "Briefcase",
     description: "Impactos socioeconômicos, automação de tarefas e a evolução das carreiras na era da pós-eficiência."
   },
   { 
     slug: "negocios", 
     category: "NEGÓCIOS", 
     label: "Negócios",
+    icon: "TrendingUp",
     description: "Análise de mercado, investimentos em tecnologia e as novas verticais de valor criadas pela IA."
   },
   { 
     slug: "politica", 
     category: "POLÍTICA", 
     label: "Política",
+    icon: "Landmark",
     description: "Regulamentação, soberania tecnológica e o impacto da inteligência artificial nas democracias."
   },
   { 
     slug: "pesquisa", 
     category: "PESQUISA", 
     label: "Pesquisa",
+    icon: "Beaker",
     description: "Novos papers, descobertas fundamentais e a ciência teórica que move a fronteira do possível."
   },
 ];
@@ -147,6 +154,7 @@ export function getCategoryLinks(
           ? `/arquivo/${activeYear}/${activeMonth}`
           : "/",
       label: "Todos",
+      icon: "LayoutGrid",
       cat: null as string | null,
       slug: null as string | null,
       count: totalPostsInContext,
@@ -157,6 +165,7 @@ export function getCategoryLinks(
           ? `/arquivo/${activeYear}/${activeMonth}/${c.slug}`
           : `/${c.slug}`,
       label: c.label,
+      icon: c.icon,
       cat: c.category,
       slug: c.slug,
       count: catCounts[c.category],

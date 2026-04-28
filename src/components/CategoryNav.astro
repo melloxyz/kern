@@ -1,8 +1,20 @@
 ---
+import { 
+  Cpu, 
+  ShieldCheck, 
+  CodeXml, 
+  Briefcase, 
+  TrendingUp, 
+  Landmark, 
+  Beaker, 
+  LayoutGrid 
+} from '@lucide/astro';
+
 interface Props {
   catLinks: Array<{
     href: string;
     label: string;
+    icon: string;
     slug: string | null;
     count: number;
   }>;
@@ -10,24 +22,38 @@ interface Props {
 }
 
 const { catLinks, activeCatSlug } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  Cpu,
+  ShieldCheck,
+  CodeXml,
+  Briefcase,
+  TrendingUp,
+  Landmark,
+  Beaker,
+  LayoutGrid
+};
 ---
 <nav class="page-layout__nav cat-nav" aria-label="Categorias">
   <p class="cat-nav__title">Categorias</p>
   <ul class="cat-nav__list">
-    {catLinks.map(link => (
-      <li>
-        <a
-          href={link.href}
-          class="cat-nav__link"
-          aria-current={activeCatSlug === link.slug ? 'page' : (link.slug === null && !activeCatSlug ? 'page' : undefined)}
-        >
-          <span class="cat-nav__dot"></span>
-          {link.label}
-          {link.slug !== null && (
-            <span class="cat-nav__count">{link.count}</span>
-          )}
-        </a>
-      </li>
-    ))}
+    {catLinks.map(link => {
+      const Icon = iconMap[link.icon];
+      return (
+        <li>
+          <a
+            href={link.href}
+            class="cat-nav__link"
+            aria-current={activeCatSlug === link.slug ? 'page' : (link.slug === null && !activeCatSlug ? 'page' : undefined)}
+          >
+            {Icon && <Icon size={16} strokeWidth={1.5} class="cat-nav__icon" />}
+            <span class="cat-nav__label">{link.label}</span>
+            {link.slug !== null && (
+              <span class="cat-nav__count">{link.count}</span>
+            )}
+          </a>
+        </li>
+      );
+    })}
   </ul>
 </nav>

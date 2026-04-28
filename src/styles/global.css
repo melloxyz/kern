@@ -326,9 +326,8 @@ h3 {
 .cat-nav__link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 7px 10px;
-  border-radius: 3px;
+  padding: 8px 10px;
+  border-radius: 4px;
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 600;
@@ -337,7 +336,7 @@ h3 {
   transition:
     color 0.15s,
     background 0.15s;
-  gap: 8px;
+  gap: 10px;
 }
 .cat-nav__link:hover {
   color: var(--ink);
@@ -350,23 +349,23 @@ h3 {
   font-weight: 700;
 }
 
-.cat-nav__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
+.cat-nav__icon {
   flex-shrink: 0;
-  opacity: 0;
+  opacity: 0.7;
 }
-.cat-nav__link[aria-current="page"] .cat-nav__dot,
-.cat-nav__link.active .cat-nav__dot {
+.cat-nav__link[aria-current="page"] .cat-nav__icon,
+.cat-nav__link.active .cat-nav__icon {
   opacity: 1;
 }
 
+.cat-nav__label {
+  flex-grow: 1;
+}
+
 .cat-nav__count {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--ink-faint);
-  margin-left: auto;
+  font-weight: 500;
 }
 
 .cat-nav__sep {
