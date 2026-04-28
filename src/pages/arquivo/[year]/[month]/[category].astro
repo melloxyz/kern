@@ -2,6 +2,7 @@
 import Base from '../../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { getReadingTime, CATEGORIES } from '../../../../utils/posts';
+import CategoryBadge from '../../../../components/CategoryBadge.astro';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -64,7 +65,7 @@ function formatDate(date: Date) {
           <a href={`/posts/${post.id}`} class="post-row">
             <div>
               <div class="post-row__meta">
-                <span class="post-row__category">{post.data.category}</span>
+                <CategoryBadge category={post.data.category} class="post-row__category" />
                 <span class="post-row__date">· {formatDate(post.data.date)}</span>
               </div>
               <h2 class="post-row__title">{post.data.title}</h2>

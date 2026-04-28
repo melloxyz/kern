@@ -453,10 +453,13 @@ h3 {
   font-weight: 700;
   color: var(--red);
   background: color-mix(in srgb, var(--red) 12%, transparent);
-  padding: 3px 5px;
+  padding: 3px 6px;
   border-radius: 4px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 .card__date {
   font-family: var(--mono);
@@ -578,10 +581,13 @@ h3 {
   font-weight: 600;
   color: var(--red);
   background: color-mix(in srgb, var(--red) 12%, transparent);
-  padding: 2px 5px;
+  padding: 2px 6px;
   border-radius: 4px;
   letter-spacing: 0;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 .post-row__date {
   font-family: var(--mono);
@@ -755,10 +761,13 @@ h3 {
   font-weight: 600;
   color: var(--red);
   background: color-mix(in srgb, var(--red) 12%, transparent);
-  padding: 3px 5px;
+  padding: 3px 7px;
   border-radius: 4px;
   letter-spacing: 0;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 .post__date,
 .post__readtime {

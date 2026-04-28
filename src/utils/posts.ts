@@ -47,7 +47,7 @@ export const CATEGORIES = [
     slug: "pesquisa", 
     category: "PESQUISA", 
     label: "Pesquisa",
-    icon: "Beaker",
+    icon: "SearchCode",
     description: "Novos papers, descobertas fundamentais e a ciência teórica que move a fronteira do possível."
   },
 ];

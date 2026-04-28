@@ -1,0 +1,53 @@
+---
+import { 
+  Cpu, 
+  ShieldCheck, 
+  CodeXml, 
+  Briefcase, 
+  TrendingUp, 
+  Landmark, 
+  SearchCode 
+} from '@lucide/astro';
+import { CATEGORIES } from '../utils/posts';
+
+interface Props {
+  category: string;
+  class?: string;
+}
+
+const { category, class: className } = Astro.props;
+
+const categoryInfo = CATEGORIES.find(c => c.category === category);
+const iconName = categoryInfo?.icon;
+
+const iconMap: Record<string, any> = {
+  Cpu,
+  ShieldCheck,
+  CodeXml,
+  Briefcase,
+  TrendingUp,
+  Landmark,
+  SearchCode
+};
+
+const Icon = iconName ? iconMap[iconName] : null;
+---
+<span class={className}>
+  {Icon && <Icon size={12} strokeWidth={2.5} class="category-icon" />}
+  <span class="category-label">{category}</span>
+</span>
+
+<style>
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .category-icon {
+    opacity: 0.9;
+    flex-shrink: 0;
+  }
+  .category-label {
+    line-height: 1;
+  }
+</style>
