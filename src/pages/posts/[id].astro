@@ -41,11 +41,24 @@ function formatDate(date: Date) {
       <a href="/" class="post__back">← voltar ao feed</a>
 
       <div class="post__meta">
-        <span class="post__category">{post.data.category}</span>
-        <span class="post__sep">·</span>
-        <span class="post__date">{formatDate(post.data.date)}</span>
-        <span class="post__sep">·</span>
-        <span class="post__readtime">{readingTime} de leitura</span>
+        <div class="post__meta-left">
+          <span class="post__category">{post.data.category}</span>
+          <span class="post__sep">·</span>
+          <span class="post__date">{formatDate(post.data.date)}</span>
+          <span class="post__sep">·</span>
+          <span class="post__readtime">{readingTime} de leitura</span>
+        </div>
+
+        {post.data.source && (
+          <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post__source-minimal">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>{new URL(post.data.source).hostname.replace('www.', '')}</span>
+          </a>
+        )}
       </div>
 
       <h1 class="post__title">{post.data.title}</h1>
@@ -57,15 +70,6 @@ function formatDate(date: Date) {
       <div class="post__body">
         <Content />
       </div>
-
-      {post.data.source && (
-        <div class="post__source">
-          <span class="post__source-label">Fonte:</span>
-          <a href={post.data.source} target="_blank" rel="noopener noreferrer" class="post__source-link">
-            {new URL(post.data.source).hostname.replace('www.', '')}
-          </a>
-        </div>
-      )}
 
       <div class="post__tags-section">
         <span class="post__tags-label">Tags</span>
