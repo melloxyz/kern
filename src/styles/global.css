@@ -47,6 +47,8 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 ::-webkit-scrollbar {
@@ -73,6 +75,8 @@ body {
   transition:
     background 0.2s,
     color 0.2s;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .post__body {
