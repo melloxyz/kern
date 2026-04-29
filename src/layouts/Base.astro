@@ -114,7 +114,7 @@ const activeArchiveKey = (activeYear && activeMonth) ? `${activeYear}-${activeMo
   <div class="page-layout">
     <CategoryNav catLinks={catLinks} activeCatSlug={activeCatSlug} />
     
-    <main class="page-layout__main">
+    <main class="page-layout__main" data-pagefind-body>
       <slot />
     </main>
 

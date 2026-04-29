@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist && pagefind --site .vercel/output/static",
     "preview": "astro preview",
     "check": "astro check",
     "new-post": "node scripts/new-post.mjs"
@@ -24,5 +24,8 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
   }
 }

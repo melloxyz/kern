@@ -45,7 +45,7 @@ function formatDate(date: Date) {
 
       <div class="post__meta">
         <div class="post__meta-left">
-          <CategoryBadge category={post.data.category} class="post__category" />
+          <CategoryBadge category={post.data.category} class="post__category" data-pagefind-filter="category" />
           <span class="post__sep">·</span>
           <span class="post__date">{formatDate(post.data.date)}</span>
           <span class="post__sep">·</span>
@@ -64,7 +64,7 @@ function formatDate(date: Date) {
         )}
       </div>
 
-      <h1 class="post__title">{post.data.title}</h1>
+      <h1 class="post__title" data-pagefind-meta="title">{post.data.title}</h1>
 
       {post.data.image && (
         <Image src={post.data.image} alt={post.data.title} width={1200} height={600} class="post__hero" loading="eager" />
