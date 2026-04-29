@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist && pagefind --site .vercel/output/static",
     "preview": "astro preview",
+    "preview:build": "npm run build && npm run preview",
     "check": "astro check",
     "new-post": "node scripts/new-post.mjs"
   },

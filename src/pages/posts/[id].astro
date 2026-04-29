@@ -47,7 +47,7 @@ function formatDate(date: Date) {
         <div class="post__meta-left">
           <CategoryBadge category={post.data.category} class="post__category" data-pagefind-filter="category" />
           <span class="post__sep">·</span>
-          <span class="post__date">{formatDate(post.data.date)}</span>
+          <span class="post__date" data-pagefind-meta="date">{formatDate(post.data.date)}</span>
           <span class="post__sep">·</span>
           <span class="post__readtime">{readingTime} de leitura</span>
         </div>
